@@ -11,10 +11,20 @@
     --chip:#0b1b35; --chip-br:#244266; --soft:#0d1a2b;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0f172a);color:var(--text)}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+    background:linear-gradient(180deg,#0b1220,#0f172a);
+    color:var(--text)
+  }
 
   /* ===== Header + Nav ===== */
-  header{padding:12px 16px;border-bottom:1px solid #1f2937;position:sticky;top:0;background:#0f172a;z-index:20}
+  header{
+    padding:12px 16px;
+    border-bottom:1px solid #1f2937;
+    position:sticky;top:0;background:#0f172a;z-index:20
+  }
   h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.3px}
   .topbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
   .spacer{flex:1}
@@ -40,11 +50,16 @@
   button:hover{background:#0b2348}
   .btn-ghost{background:transparent;border-color:#334155}
 
-  /* ===== Layout principal ===== */
-  .page{padding:16px}
-  .wrap{display:grid;gap:16px;grid-template-columns:1.1fr 1.1fr 1fr}
-  @media (max-width:1100px){.wrap{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid #1f2937;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  /* ===== Página/Secciones ===== */
+  main.page{
+    padding:16px;
+    width:100%;
+    max-width:1400px;            /* ancho amplio para “ocupar pantalla” sin quedarse a la izquierda */
+    margin:0 auto;               /* centrado */
+    min-height:calc(100vh - 64px);
+  }
+  .wrap{display:grid;gap:16px;grid-template-columns:1fr} /* SIEMPRE 1 columna (cada sección ocupa todo el ancho) */
+  .card{background:var(--panel);border:1px solid #1f2937;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25);width:100%}
   .card header{position:unset;background:transparent;border:0;padding:16px 16px 0}
   .card .content{padding:16px}
 
@@ -110,6 +125,9 @@
   .autocomplete-list div:hover { background: #1e293b; }
 
   /* ===== Responsive refinements ===== */
+  @media (max-width:1200px){
+    main.page{max-width:100%;padding:12px}
+  }
   @media (max-width:900px){
     .grid-3{grid-template-columns:1fr}
     .grid-2{grid-template-columns:1fr}
@@ -121,6 +139,7 @@
     .sticky-actions button{flex:1}
     .profile input{min-width:160px}
     .nav{width:100%}
+    .topbar{gap:10px}
   }
 
   /* Impresión (PDF) */
@@ -368,7 +387,6 @@ function showRoute(route){
     s.classList.toggle('active', s.getAttribute('data-route')===route);
   });
   setActiveNav(route);
-  // mejora móvil: sube arriba al cambiar “página”
   window.scrollTo({top:0, behavior:"smooth"});
 }
 function getRouteFromHash(){
@@ -376,7 +394,6 @@ function getRouteFromHash(){
   return ROUTES.includes(h) ? h : "calculos";
 }
 window.addEventListener("hashchange", ()=>showRoute(getRouteFromHash()));
-// Inicializa en primera carga
 document.addEventListener("DOMContentLoaded", ()=>showRoute(getRouteFromHash()));
 </script>
 
@@ -427,12 +444,10 @@ function saveState(){
 /* =======================
    Cálculos (mismas fórmulas)
    ======================= */
-// TMB Mifflin–St Jeor
 function calcTMB({sexo,edad,peso,altura}){
   const s = (sexo==='m') ? 5 : -161;
   return Math.round((10*peso) + (6.25*altura) - (5*edad) + s);
 }
-// FAD calibrado (mantengo el anterior para reproducir tus números)
 function calcFAD(pasos,diasEnt){
   let base =
     pasos < 3000 ? 1.25 :
@@ -444,7 +459,6 @@ function calcFAD(pasos,diasEnt){
 }
 function kcalFromMacros(p,c,f){ return Math.round(p*4 + c*4 + f*9); }
 
-// Construcción de objetivos por plan
 function buildPlanTargets(calc){
   const {tdee, peso} = calc;
   const out = {
@@ -858,7 +872,6 @@ function renderTotals(kind){
 /* =======================
    Eventos UI
    ======================= */
-// Perfil
 $("#btnCargar").onclick = ()=>{
   const name = ($("#perfil").value||"default").trim();
   if(!name) return;
@@ -873,7 +886,6 @@ $("#btnNuevo").onclick = ()=>{
   loadProfile(name);
 };
 
-// Exportar/Importar JSON
 $("#btnExpJSON").onclick = ()=>{
   const all = getAllProfiles();
   const blob = new Blob([JSON.stringify(all,null,2)], {type:"application/json"});
@@ -898,7 +910,6 @@ $("#impJSON").onchange = (e)=>{
   fr.readAsText(file);
 };
 
-// Inputs de cálculo → tiempo real
 ["edad","peso","altura","pasos","diasEnt","sexo"].forEach(id=>{
   document.getElementById(id).addEventListener("input", ()=>{
     state.calc = {
@@ -909,7 +920,6 @@ $("#impJSON").onchange = (e)=>{
   });
 });
 
-// Aplicar plan a ENT & DES
 $("#btnAplicarPlan").onclick = ()=>{
   const cal = computeAllCalcs();
   const plan = $("#plan").value;
@@ -921,7 +931,6 @@ $("#btnAplicarPlan").onclick = ()=>{
   saveState();
 };
 
-// (segundo handler original del código fuente: se mantiene por compatibilidad)
 document.getElementById("addFood").onclick = ()=>{
   const name = $("#foodName").value.trim();
   const p = +$("#foodP").value, c = +$("#foodC").value, f = +$("#foodF").value;
@@ -935,7 +944,6 @@ document.getElementById("addFood").onclick = ()=>{
   renderFoods(); renderTotals("entreno"); renderTotals("descanso"); saveState();
 };
 
-// Set meals count
 $("#entSetMeals").onclick = ()=>{ const n = Math.max(1, Math.min(10, +$("#entMeals").value||3)); setMealsCount("entreno", n); };
 $("#desSetMeals").onclick = ()=>{ const n = Math.max(1, Math.min(10, +$("#desMeals").value||3)); setMealsCount("descanso", n); };
 function setMealsCount(kind, n){
@@ -945,7 +953,6 @@ function setMealsCount(kind, n){
   renderDiet(kind); saveState();
 }
 
-// Objetivos manuales en tiempo real
 ["entKcal","entP","entC","entF"].forEach(id=>{
   document.getElementById(id).addEventListener("input", ()=>{
     state.objetivos.entreno = {
@@ -1178,8 +1185,6 @@ document.getElementById("btnLista").addEventListener("click", exportListaCompra)
 /* =======================
    🔘 AUTOCOMPLETAR MACROS (por dieta)
    ======================= */
-
-// Inserta los botones junto al de "Definir comidas"
 function addAutoButtons() {
   const entRow = $("#entSetMeals").closest(".row");
   const desRow = $("#desSetMeals").closest(".row");
@@ -1205,7 +1210,6 @@ function addAutoButtons() {
   }
 }
 
-// Estilo visual del botón (manteniendo tu paleta)
 const style = document.createElement("style");
 style.textContent = `
   .btnAuto {
@@ -1227,7 +1231,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// Lógica principal
 function autoCompleteMacros(kind){
   const totals = dietTotals(kind);
   const goal = currentGoal(kind);
@@ -1297,7 +1300,6 @@ function autoCompleteMacros(kind){
   alert(`⚙️ ${kind.toUpperCase()} ajustada automáticamente a sus macros y kcal objetivo.`);
 }
 
-// Iniciar los botones al cargar
 document.addEventListener("DOMContentLoaded", addAutoButtons);
 </script>
 
