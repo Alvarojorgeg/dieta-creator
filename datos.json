@@ -1,0 +1,803 @@
+{
+"foods": [{
+  "id": "f_xaji0y6d",
+  "name": "Agua",
+  "p": 0.0,
+  "c": 0.0,
+  "f": 0.0,
+  "kcal": 0
+},
+{
+  "id": "f_7dpb2m0p",
+  "name": "Café solo",
+  "p": 0.1,
+  "c": 0.0,
+  "f": 0.0,
+  "kcal": 0
+},
+{
+  "id": "f_mf1u3m5t",
+  "name": "Café con leche",
+  "p": 1.5,
+  "c": 2.5,
+  "f": 1.1,
+  "kcal": 28
+},
+{
+  "id": "f_z2g9o2yq",
+  "name": "Té",
+  "p": 0.0,
+  "c": 0.0,
+  "f": 0.0,
+  "kcal": 0
+},
+{
+  "id": "f_j6yqzrcv",
+  "name": "Leche entera",
+  "p": 3.2,
+  "c": 4.8,
+  "f": 3.6,
+  "kcal": 63
+},
+{
+  "id": "f_5b8j2h1y",
+  "name": "Leche semidesnatada",
+  "p": 3.2,
+  "c": 4.8,
+  "f": 1.6,
+  "kcal": 43
+},
+{
+  "id": "f_3q8l2b6x",
+  "name": "Leche desnatada",
+  "p": 3.4,
+  "c": 5.0,
+  "f": 0.2,
+  "kcal": 34
+},
+{
+  "id": "f_2x0x0x8o",
+  "name": "Bebida de avena",
+  "p": 1.0,
+  "c": 6.5,
+  "f": 1.5,
+  "kcal": 42
+},
+{
+  "id": "f_41ibljh7",
+  "name": "Bebida de soja",
+  "p": 3.3,
+  "c": 2.0,
+  "f": 1.8,
+  "kcal": 33
+},
+{
+  "id": "f_1d1o0n3o",
+  "name": "Refresco cola",
+  "p": 0.0,
+  "c": 10.6,
+  "f": 0.0,
+  "kcal": 42
+},
+{
+  "id": "f_vy0s8vbm",
+  "name": "Refresco naranja",
+  "p": 0.0,
+  "c": 10.4,
+  "f": 0.0,
+  "kcal": 42
+},
+{
+  "id": "f_fcx5z1t3",
+  "name": "Zumo de naranja",
+  "p": 0.7,
+  "c": 10.4,
+  "f": 0.2,
+  "kcal": 45
+},
+{
+  "id": "f_tz6qktpr",
+  "name": "Cerveza",
+  "p": 0.5,
+  "c": 3.6,
+  "f": 0.0,
+  "kcal": 16
+},
+{
+  "id": "f_b4x4v0o3",
+  "name": "Vino tinto",
+  "p": 0.1,
+  "c": 2.6,
+  "f": 0.0,
+  "kcal": 11
+},
+{
+  "id": "f_0jz4l2o0",
+  "name": "Vino blanco",
+  "p": 0.1,
+  "c": 2.6,
+  "f": 0.0,
+  "kcal": 11
+},
+{
+  "id": "f_8c7m51d3",
+  "name": "Pan blanco",
+  "p": 8.0,
+  "c": 49.0,
+  "f": 1.2,
+  "kcal": 237
+},
+{
+  "id": "f_2z2w2d9l",
+  "name": "Pan integral",
+  "p": 9.0,
+  "c": 41.0,
+  "f": 2.2,
+  "kcal": 225
+},
+{
+  "id": "f_1m2j5t1c",
+  "name": "Arroz blanco cocido",
+  "p": 2.7,
+  "c": 28.0,
+  "f": 0.3,
+  "kcal": 126
+},
+{
+  "id": "f_a4k0s2b6",
+  "name": "Pasta cocida",
+  "p": 5.0,
+  "c": 31.0,
+  "f": 1.1,
+  "kcal": 161
+},
+{
+  "id": "f_9h5a0n4e",
+  "name": "Patata cocida",
+  "p": 2.0,
+  "c": 17.0,
+  "f": 0.1,
+  "kcal": 77
+},
+{
+  "id": "f_i5tw1f4b",
+  "name": "Huevo",
+  "p": 12.6,
+  "c": 0.7,
+  "f": 10.6,
+  "kcal": 155
+},
+{
+  "id": "f_0xq1gq0x",
+  "name": "Clara de huevo",
+  "p": 10.9,
+  "c": 0.7,
+  "f": 0.2,
+  "kcal": 48
+},
+{
+  "id": "f_2z1w1o2d",
+  "name": "Pechuga de pollo",
+  "p": 31.0,
+  "c": 0.0,
+  "f": 3.6,
+  "kcal": 187
+},
+{
+  "id": "f_7s8t6m2m",
+  "name": "Muslo de pollo",
+  "p": 27.0,
+  "c": 0.0,
+  "f": 8.0,
+  "kcal": 220
+},
+{
+  "id": "f_gb4l6l9l",
+  "name": "Carne de ternera magra",
+  "p": 26.0,
+  "c": 0.0,
+  "f": 8.0,
+  "kcal": 220
+},
+{
+  "id": "f_7v8b1y2n",
+  "name": "Carne de cerdo",
+  "p": 25.0,
+  "c": 0.0,
+  "f": 14.0,
+  "kcal": 266
+},
+{
+  "id": "f_0lq8v6e1",
+  "name": "Jamón serrano",
+  "p": 30.0,
+  "c": 0.0,
+  "f": 15.0,
+  "kcal": 315
+},
+{
+  "id": "f_0q8y1h0b",
+  "name": "Jamón cocido",
+  "p": 17.0,
+  "c": 1.5,
+  "f": 3.5,
+  "kcal": 110
+},
+{
+  "id": "f_2l1e5r2v",
+  "name": "Chorizo",
+  "p": 24.0,
+  "c": 2.0,
+  "f": 34.0,
+  "kcal": 426
+},
+{
+  "id": "f_7a4r0k1n",
+  "name": "Salchichas",
+  "p": 12.0,
+  "c": 2.0,
+  "f": 25.0,
+  "kcal": 293
+},
+{
+  "id": "f_9a3n7r1g",
+  "name": "Atún en lata al natural",
+  "p": 24.0,
+  "c": 0.0,
+  "f": 1.0,
+  "kcal": 101
+},
+{
+  "id": "f_v8y2j8q9",
+  "name": "Sardinas en aceite (escurridas)",
+  "p": 25.0,
+  "c": 0.0,
+  "f": 10.5,
+  "kcal": 199
+},
+{
+  "id": "f_6q6q8b8w",
+  "name": "Salmón",
+  "p": 20.0,
+  "c": 0.0,
+  "f": 13.0,
+  "kcal": 209
+},
+{
+  "id": "f_9w6r0x9o",
+  "name": "Merluza",
+  "p": 18.0,
+  "c": 0.0,
+  "f": 1.5,
+  "kcal": 82
+},
+{
+  "id": "f_9t6r9r2z",
+  "name": "Bacalao salado (remojado)",
+  "p": 22.0,
+  "c": 0.0,
+  "f": 1.0,
+  "kcal": 94
+},
+{
+  "id": "f_6s9t0o8v",
+  "name": "Gambas",
+  "p": 20.0,
+  "c": 0.0,
+  "f": 1.0,
+  "kcal": 89
+},
+{
+  "id": "f_3g4z4w3c",
+  "name": "Aceite de oliva",
+  "p": 0.0,
+  "c": 0.0,
+  "f": 100.0,
+  "kcal": 900
+},
+{
+  "id": "f_8j4z2k4x",
+  "name": "Mantequilla",
+  "p": 0.5,
+  "c": 0.5,
+  "f": 82.0,
+  "kcal": 743
+},
+{
+  "id": "f_6z8m3y0h",
+  "name": "Margarina",
+  "p": 0.2,
+  "c": 0.4,
+  "f": 80.0,
+  "kcal": 720
+},
+{
+  "id": "f_6y3j9m9y",
+  "name": "Queso manchego curado",
+  "p": 25.0,
+  "c": 0.0,
+  "f": 33.0,
+  "kcal": 429
+},
+{
+  "id": "f_7w0x1o8q",
+  "name": "Queso fresco",
+  "p": 12.0,
+  "c": 3.0,
+  "f": 9.0,
+  "kcal": 141
+},
+{
+  "id": "f_9y0c4a2i",
+  "name": "Yogur natural",
+  "p": 4.3,
+  "c": 4.7,
+  "f": 3.3,
+  "kcal": 59
+},
+{
+  "id": "f_1s8x5s0f",
+  "name": "Yogur griego",
+  "p": 3.8,
+  "c": 4.1,
+  "f": 10.0,
+  "kcal": 106
+},
+{
+  "id": "f_6m4p0o9c",
+  "name": "Yogur desnatado",
+  "p": 4.3,
+  "c": 5.0,
+  "f": 0.2,
+  "kcal": 38
+},
+{
+  "id": "f_8b7o0l5a",
+  "name": "Helado de vainilla",
+  "p": 3.5,
+  "c": 23.0,
+  "f": 11.0,
+  "kcal": 207
+},
+{
+  "id": "f_1s3j2v0l",
+  "name": "Queso crema",
+  "p": 7.0,
+  "c": 5.0,
+  "f": 33.0,
+  "kcal": 341
+},
+{
+  "id": "f_3e0y4a4g",
+  "name": "Plátano",
+  "p": 1.2,
+  "c": 23.0,
+  "f": 0.3,
+  "kcal": 95
+},
+{
+  "id": "f_9y8c6p2n",
+  "name": "Manzana",
+  "p": 0.3,
+  "c": 14.0,
+  "f": 0.2,
+  "kcal": 57
+},
+{
+  "id": "f_3s3a1n2f",
+  "name": "Naranja",
+  "p": 0.9,
+  "c": 12.0,
+  "f": 0.1,
+  "kcal": 54
+},
+{
+  "id": "f_6t5z3j8n",
+  "name": "Pera",
+  "p": 0.4,
+  "c": 15.0,
+  "f": 0.1,
+  "kcal": 61
+},
+{
+  "id": "f_2y5o8q3e",
+  "name": "Fresa",
+  "p": 0.8,
+  "c": 7.7,
+  "f": 0.3,
+  "kcal": 33
+},
+{
+  "id": "f_6e6t8x0b",
+  "name": "Uva",
+  "p": 0.6,
+  "c": 18.0,
+  "f": 0.4,
+  "kcal": 78
+},
+{
+  "id": "f_5c1o2j2x",
+  "name": "Tomate",
+  "p": 0.9,
+  "c": 3.9,
+  "f": 0.2,
+  "kcal": 21
+},
+{
+  "id": "f_3p2k1b8y",
+  "name": "Lechuga",
+  "p": 1.4,
+  "c": 2.9,
+  "f": 0.2,
+  "kcal": 18
+},
+{
+  "id": "f_6b6a0p0v",
+  "name": "Pepino",
+  "p": 0.7,
+  "c": 3.6,
+  "f": 0.1,
+  "kcal": 17
+},
+{
+  "id": "f_3k8h5w0u",
+  "name": "Zanahoria",
+  "p": 0.9,
+  "c": 10.0,
+  "f": 0.2,
+  "kcal": 45
+},
+{
+  "id": "f_2p5o8u7u",
+  "name": "Cebolla",
+  "p": 1.1,
+  "c": 9.3,
+  "f": 0.1,
+  "kcal": 42
+},
+{
+  "id": "f_4w6s6y0h",
+  "name": "Pimiento rojo",
+  "p": 1.0,
+  "c": 6.0,
+  "f": 0.3,
+  "kcal": 34
+},
+{
+  "id": "f_4n9w6x2e",
+  "name": "Brócoli",
+  "p": 2.8,
+  "c": 7.0,
+  "f": 0.4,
+  "kcal": 44
+},
+{
+  "id": "f_9e1r6r7x",
+  "name": "Espinacas",
+  "p": 2.9,
+  "c": 3.6,
+  "f": 0.4,
+  "kcal": 30
+},
+{
+  "id": "f_5o0y6b7v",
+  "name": "Calabacín",
+  "p": 1.2,
+  "c": 3.1,
+  "f": 0.3,
+  "kcal": 21
+},
+{
+  "id": "f_9s4o3p3m",
+  "name": "Berenjena",
+  "p": 1.0,
+  "c": 6.0,
+  "f": 0.2,
+  "kcal": 32
+},
+{
+  "id": "f_5k2o8j2p",
+  "name": "Aguacate",
+  "p": 2.0,
+  "c": 9.0,
+  "f": 15.0,
+  "kcal": 201
+},
+{
+  "id": "f_0w8c5m6o",
+  "name": "Lentejas cocidas",
+  "p": 8.9,
+  "c": 20.1,
+  "f": 0.4,
+  "kcal": 118
+},
+{
+  "id": "f_7k2b1b0m",
+  "name": "Garbanzos cocidos",
+  "p": 8.3,
+  "c": 27.4,
+  "f": 2.6,
+  "kcal": 166
+},
+{
+  "id": "f_2v9c5k9o",
+  "name": "Alubias cocidas",
+  "p": 8.2,
+  "c": 22.8,
+  "f": 0.5,
+  "kcal": 126
+},
+{
+  "id": "f_8o0j7t2h",
+  "name": "Tofu firme",
+  "p": 12.0,
+  "c": 2.0,
+  "f": 6.0,
+  "kcal": 114
+},
+{
+  "id": "f_3w3j6q1j",
+  "name": "Tempeh",
+  "p": 19.0,
+  "c": 9.0,
+  "f": 11.0,
+  "kcal": 219
+},
+{
+  "id": "f_9o0m1w4m",
+  "name": "Pan de molde blanco",
+  "p": 8.0,
+  "c": 49.0,
+  "f": 3.5,
+  "kcal": 273
+},
+{
+  "id": "f_0y6v4r7e",
+  "name": "Galletas María",
+  "p": 7.0,
+  "c": 74.0,
+  "f": 12.0,
+  "kcal": 452
+},
+{
+  "id": "f_1j5n6n7u",
+  "name": "Cereales corn flakes",
+  "p": 7.5,
+  "c": 84.0,
+  "f": 0.9,
+  "kcal": 372
+},
+{
+  "id": "f_8z0n6r0y",
+  "name": "Avena (copos)",
+  "p": 13.0,
+  "c": 60.0,
+  "f": 7.0,
+  "kcal": 379
+},
+{
+  "id": "f_6j8x3h8m",
+  "name": "Arroz integral cocido",
+  "p": 2.6,
+  "c": 23.0,
+  "f": 0.9,
+  "kcal": 109
+},
+{
+  "id": "f_1u4e2q9o",
+  "name": "Quinoa cocida",
+  "p": 4.4,
+  "c": 21.0,
+  "f": 1.9,
+  "kcal": 125
+},
+{
+  "id": "f_9j1i1l5c",
+  "name": "Cuscús cocido",
+  "p": 3.8,
+  "c": 23.0,
+  "f": 0.2,
+  "kcal": 108
+},
+{
+  "id": "f_9a6y1b4z",
+  "name": "Pizza margarita",
+  "p": 11.0,
+  "c": 28.0,
+  "f": 9.0,
+  "kcal": 241
+},
+{
+  "id": "f_9j2v4m7b",
+  "name": "Hamburguesa de vacuno",
+  "p": 26.0,
+  "c": 0.0,
+  "f": 20.0,
+  "kcal": 284
+},
+{
+  "id": "f_9r7k4q9x",
+  "name": "Tortilla de patatas",
+  "p": 7.0,
+  "c": 12.0,
+  "f": 11.0,
+  "kcal": 179
+},
+{
+  "id": "f_0s8y0j0v",
+  "name": "Paella mixta",
+  "p": 7.0,
+  "c": 23.0,
+  "f": 6.0,
+  "kcal": 150
+},
+{
+  "id": "f_8q2f0b1j",
+  "name": "Croquetas de jamón",
+  "p": 9.0,
+  "c": 21.0,
+  "f": 14.0,
+  "kcal": 242
+},
+{
+  "id": "f_7b0h8s6m",
+  "name": "Empanada de atún",
+  "p": 9.0,
+  "c": 34.0,
+  "f": 11.0,
+  "kcal": 299
+},
+{
+  "id": "f_7o1j9s8r",
+  "name": "Mayonesa",
+  "p": 1.0,
+  "c": 0.5,
+  "f": 75.0,
+  "kcal": 678
+},
+{
+  "id": "f_7r4d3f3e",
+  "name": "Ketchup",
+  "p": 1.2,
+  "c": 27.0,
+  "f": 0.1,
+  "kcal": 113
+},
+{
+  "id": "f_5x1o5v1q",
+  "name": "Tomate frito",
+  "p": 1.5,
+  "c": 7.0,
+  "f": 6.0,
+  "kcal": 98
+},
+{
+  "id": "f_4k8b8o6l",
+  "name": "Azúcar",
+  "p": 0.0,
+  "c": 100.0,
+  "f": 0.0,
+  "kcal": 400
+},
+{
+  "id": "f_3n8w7e7k",
+  "name": "Miel",
+  "p": 0.3,
+  "c": 82.0,
+  "f": 0.0,
+  "kcal": 329
+},
+{
+  "id": "f_4h5r7b8h",
+  "name": "Chocolate negro 70%",
+  "p": 7.8,
+  "c": 46.0,
+  "f": 43.0,
+  "kcal": 587
+},
+{
+  "id": "f_7q0r6d1v",
+  "name": "Chocolate con leche",
+  "p": 7.7,
+  "c": 59.0,
+  "f": 30.0,
+  "kcal": 515
+},
+{
+  "id": "f_9l6p2k2m",
+  "name": "Cacao en polvo azucarado",
+  "p": 5.0,
+  "c": 80.0,
+  "f": 5.0,
+  "kcal": 380
+},
+{
+  "id": "f_6q2q2o9e",
+  "name": "Frutos secos mixtos",
+  "p": 20.0,
+  "c": 20.0,
+  "f": 50.0,
+  "kcal": 610
+},
+{
+  "id": "f_7z1z3g8k",
+  "name": "Almendras",
+  "p": 21.0,
+  "c": 22.0,
+  "f": 50.0,
+  "kcal": 606
+},
+{
+  "id": "f_8k8x6h9h",
+  "name": "Nueces",
+  "p": 15.0,
+  "c": 14.0,
+  "f": 65.0,
+  "kcal": 654
+},
+{
+  "id": "f_9m9k6t6o",
+  "name": "Avellanas",
+  "p": 15.0,
+  "c": 17.0,
+  "f": 61.0,
+  "kcal": 646
+},
+{
+  "id": "f_9k2m4w7m",
+  "name": "Pistachos",
+  "p": 20.0,
+  "c": 28.0,
+  "f": 45.0,
+  "kcal": 605
+},
+{
+  "id": "f_6o5g5z6y",
+  "name": "Pipas de girasol",
+  "p": 21.0,
+  "c": 20.0,
+  "f": 51.0,
+  "kcal": 597
+},
+{
+  "id": "f_7x8n6m2d",
+  "name": "Aceitunas verdes",
+  "p": 1.0,
+  "c": 3.8,
+  "f": 10.0,
+  "kcal": 114
+},
+{
+  "id": "f_8l6q5c3e",
+  "name": "Aceitunas negras",
+  "p": 1.6,
+  "c": 8.0,
+  "f": 15.0,
+  "kcal": 167
+},
+{
+  "id": "f_8c7c3e7v",
+  "name": "Gazpacho",
+  "p": 0.8,
+  "c": 3.6,
+  "f": 3.0,
+  "kcal": 42
+},
+{
+  "id": "f_8p2i7v1o",
+  "name": "Caldo de pollo",
+  "p": 1.0,
+  "c": 0.5,
+  "f": 0.5,
+  "kcal": 9
+},
+{
+  "id": "f_55j2o7s3",
+  "name": "Sopa de verduras",
+  "p": 1.0,
+  "c": 3.0,
+  "f": 0.5,
+  "kcal": 20
+}
+]
+}
