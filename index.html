@@ -308,6 +308,7 @@
             <input id="foodF" type="number" step="0.1" placeholder="Grasa (g)" />
             <input id="foodK" type="number" step="1" placeholder="Kcal (manual)" />
             <button id="addFood">Añadir</button>
+            <button id="btnCargarFoods" class="btn-ghost">📦 Cargar base de datos de ejemplo</button>
           </div>
           <div class="divider"></div>
           <div class="list" id="foodsList"></div>
@@ -972,14 +973,57 @@ function setMealsCount(kind, n){
   });
 });
 
+// =======================
+// 📂 Cargar solo foods desde datos.json
+// =======================
+document.getElementById("btnCargarFoods").onclick = async () => {
+  try {
+    const resp = await fetch("datos.json");
+    if (!resp.ok) throw new Error("No se pudo cargar datos.json");
+    const data = await resp.json();
+
+    if (!data.foods || !Array.isArray(data.foods)) {
+      alert("El archivo no contiene una lista válida de 'foods'.");
+      return;
+    }
+
+    // Confirmar antes de sobreescribir
+    if (!confirm("¿Deseas cargar la base de datos de ejemplo? Se añadirán los alimentos sin borrar los actuales.")) {
+      return;
+    }
+
+    // Añadir los nuevos foods sin borrar los que ya existan
+    const existingIds = new Set(state.foods.map(f => f.id));
+    const nuevosFoods = data.foods.filter(f => !existingIds.has(f.id));
+
+    state.foods.push(...nuevosFoods);
+    saveState();
+    renderFoods();
+
+    alert(`✅ Se añadieron ${nuevosFoods.length} nuevos alimentos desde datos.json.`);
+  } catch (err) {
+    console.error(err);
+    alert("Error al cargar datos.json. Asegúrate de que esté en la misma carpeta que este HTML.");
+  }
+};
+
 /* =======================
    Inicio
    ======================= */
+   
 window.addEventListener("beforeunload", saveState);
-document.addEventListener("DOMContentLoaded", ()=>{
-  const existing = Object.keys(getAllProfiles())[0] || "Alvaro";
-  loadProfile(existing);
+document.addEventListener("DOMContentLoaded", ()=> {
+  const all = getAllProfiles();
+  const keys = Object.keys(all);
+  if (keys.length > 0) {
+    loadProfile(keys[0]);
+  } else {
+    // No hay perfiles: no cargamos nada y dejamos el input vacío
+    state = null;
+    $("#perfil").value = "";
+  }
 });
+
 
 /* =======================
    Exportar PDF de dietas
