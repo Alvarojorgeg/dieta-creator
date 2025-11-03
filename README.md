@@ -1,10 +1,11 @@
 # 🥦 Planificador de Dieta — *Entreno & Descanso*
 
-> ¿Estás buscando una **app sencilla y visual** para crear tu propia dieta, contar tus macros y alcanzar tus objetivos fitness sin complicarte la vida?  
-> 🏋️‍♂️💪 Entonces este planificador es para ti.
+Hola, soy **Álvaro**, y siempre he tenido problemas para contar las **calorías y los macros** cuando quería seguir una dieta.  
+Las apps de IA que probaba lo hacían mal, y hacerlo en **Excel** era un trabajo eterno.  
+Así que decidí crear **mi propio sistema**: algo sencillo, visual y que realmente funcionara.
 
-Con esta herramienta podrás calcular tus **calorías reales (TDEE)**, organizar tus **comidas diarias**, ajustar tus **macros exactos**, y generar **dietas personalizadas** tanto para los días de entrenamiento como para los de descanso.  
-Todo con una interfaz limpia, intuitiva y 100% automática. ⚙️
+Con esta herramienta puedes calcular tus **calorías reales (TDEE)**, organizar tus **comidas diarias**, ajustar tus **macros exactos**, y generar **dietas personalizadas** tanto para los días de entrenamiento como para los de descanso.  
+Todo con una interfaz limpia, intuitiva y totalmente automática. ⚙️
 
 ---
 
