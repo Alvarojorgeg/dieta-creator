@@ -12,23 +12,45 @@
   }
   *{box-sizing:border-box}
   body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0f172a);color:var(--text)}
-  header{padding:20px 16px;border-bottom:1px solid #1f2937;position:sticky;top:0;background:#0f172a;z-index:10}
-  h1{margin:0;font-size:20px;font-weight:700;letter-spacing:.3px}
-  .wrap{display:grid;gap:16px;padding:16px;grid-template-columns:1.1fr 1.1fr 1fr}
-  @media (max-width:1100px){.wrap{grid-template-columns:1fr}}
-  .card{background:var(--panel);border:1px solid #1f2937;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
-  .card header{position:unset;background:transparent;border:0;padding:16px 16px 0}
-  .card .content{padding:16px}
-  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .col{display:flex;flex-direction:column;gap:6px}
+
+  /* ===== Header + Nav ===== */
+  header{padding:12px 16px;border-bottom:1px solid #1f2937;position:sticky;top:0;background:#0f172a;z-index:20}
+  h1{margin:0;font-size:18px;font-weight:700;letter-spacing:.3px}
+  .topbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+  .spacer{flex:1}
+  .nav{
+    display:flex;gap:6px;align-items:center;background:#0b1220;border:1px solid #1f2a3f;
+    padding:4px;border-radius:10px;overflow:auto;
+  }
+  .nav a{
+    text-decoration:none;color:#cbd5e1;font-size:13px;padding:8px 12px;border-radius:8px;
+    white-space:nowrap;border:1px solid transparent;transition:.2s;
+  }
+  .nav a:hover{background:#0b2348;border-color:#2b3f5d}
+  .nav a.active{background:#0b2348;border-color:#3b82f6;color:#e5efff}
+
+  .profile{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
   label{font-size:12px;color:#a5b4fc}
+
   input,select,button,textarea{
-    background:#0b1220;color:var(--text);border:1px solid #334155;border-radius:10px;padding:10px 12px;font-size:14px;outline:none
+    background:#0b1220;color:var(--text);border:1px solid #334155;border-radius:10px;padding:9px 11px;font-size:14px;outline:none
   }
   input[type="number"]{width:110px}
   button{cursor:pointer;transition:.2s;border-color:#3b82f6}
   button:hover{background:#0b2348}
   .btn-ghost{background:transparent;border-color:#334155}
+
+  /* ===== Layout principal ===== */
+  .page{padding:16px}
+  .wrap{display:grid;gap:16px;grid-template-columns:1.1fr 1.1fr 1fr}
+  @media (max-width:1100px){.wrap{grid-template-columns:1fr}}
+  .card{background:var(--panel);border:1px solid #1f2937;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .card header{position:unset;background:transparent;border:0;padding:16px 16px 0}
+  .card .content{padding:16px}
+
+  /* Utilidades */
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .col{display:flex;flex-direction:column;gap:6px}
   .grid{display:grid;gap:10px}
   .grid-2{grid-template-columns:1fr 1fr}
   .grid-3{grid-template-columns:repeat(3,1fr)}
@@ -41,22 +63,19 @@
   .right{margin-left:auto}
   .small{font-size:12px}
   .help{font-size:12px;opacity:.9}
+  .mono{font-variant-numeric:tabular-nums}
 
   /* Totales */
   .totals{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
   .totals .box{background:#0b1220;border:1px solid #334155;border-radius:10px;padding:8px 10px;min-width:120px}
   .ok{color:var(--ok)} .warn{color:var(--warn)} .bad{color:var(--bad)}
 
-  /* Cajas cálculo */
+  /* Cálculos */
   .calc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .calc-box{background:var(--soft);border:1px solid #21314a;border-radius:14px;padding:12px}
   .calc-box .title{display:flex;align-items:center;gap:8px;font-weight:700;margin-bottom:8px}
   .chip{display:inline-flex;align-items:center;gap:6px;background:var(--chip);border:1px solid var(--chip-br);padding:6px 10px;border-radius:999px;font-size:12px}
   .statline{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;font-size:13px}
-  .statline span.key{color:#93c5fd}
-  .mono{font-variant-numeric:tabular-nums}
-
-  /* Volumen/Deficit layout */
   .plan-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .plan-card{background:#0b1220;border:1px solid #244266;border-radius:14px;padding:12px}
   .plan-card .head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
@@ -64,7 +83,7 @@
   .plan-row{display:flex;gap:8px;align-items:center}
   .badge{font-size:11px;border:1px solid #2b3f5d;background:#0b1b35;padding:2px 8px;border-radius:999px}
 
-  /* Dietas minimalistas */
+  /* Dietas */
   .diet-wrap{display:grid;gap:14px}
   .diet-card{background:#0b1220;border:1px solid #21314a;border-radius:14px;padding:12px}
   .diet-card header{display:flex;align-items:center;gap:10px;margin-bottom:8px}
@@ -85,6 +104,25 @@
   th,td{padding:8px;border-bottom:1px solid #1f2937;text-align:left}
   th{font-size:12px;color:#93c5fd}
 
+  /* Autocompletado */
+  .autocomplete-list { position: absolute !important; z-index: 99999; background: var(--panel); border: 1px solid #244266; border-radius: 8px; max-height: 220px; overflow-y: auto; box-shadow: 0 6px 16px rgba(0,0,0,.5); }
+  .autocomplete-list div { padding: 8px 10px; cursor: pointer; }
+  .autocomplete-list div:hover { background: #1e293b; }
+
+  /* ===== Responsive refinements ===== */
+  @media (max-width:900px){
+    .grid-3{grid-template-columns:1fr}
+    .grid-2{grid-template-columns:1fr}
+    .calc-row{grid-template-columns:1fr}
+    .plan-grid{grid-template-columns:1fr}
+    input[type="number"]{width:100%}
+    .meal-item{grid-template-columns:1fr auto auto auto}
+    .sticky-actions{justify-content:stretch;gap:8px}
+    .sticky-actions button{flex:1}
+    .profile input{min-width:160px}
+    .nav{width:100%}
+  }
+
   /* Impresión (PDF) */
   @media print{
     body{background:#fff;color:#000}
@@ -93,209 +131,254 @@
     .meal-card{border-color:#ddd}
     .totals .box{border-color:#bbb;background:#fff}
   }
-  /* Mejora visual del autocompletado */
-  .autocomplete-list { position: absolute !important; z-index: 99999; background: var(--panel); border: 1px solid #244266; border-radius: 8px; max-height: 220px; overflow-y: auto; box-shadow: 0 6px 16px rgba(0,0,0,.5); }
-  .autocomplete-list div { padding: 8px 10px; cursor: pointer; }
-  .autocomplete-list div:hover { background: #1e293b; }
 
+  /* SPA: visibilidad por página */
+  [data-route]{display:none}
+  [data-route].active{display:block}
 </style>
 </head>
 <body>
-  <header class="row">
-    <h1>Planificador de Dieta — Entreno & Descanso</h1>
-    <div class="right profile">
-      <label for="perfil">Perfil:</label>
-      <input id="perfil" placeholder="Tu nombre" />
-      <button id="btnCargar">Usar perfil</button>
-      <button id="btnNuevo" class="btn-ghost">Nuevo</button>
-      <button id="btnExpJSON" class="btn-ghost">Exportar JSON</button>
-      <label for="impJSON" class="btn-ghost" style="cursor:pointer;">Importar JSON</label>
-      <input id="impJSON" type="file" accept="application/json" style="display:none" />
-      <span class="help">Autoguardado en tu navegador.</span>
+  <header>
+    <div class="topbar">
+      <h1>Planificador de Dieta — Entreno & Descanso</h1>
+      <div class="spacer"></div>
+
+      <!-- Navegación SPA -->
+      <nav class="nav" aria-label="Secciones">
+        <a href="#calculos" data-link="calculos">Cálculos</a>
+        <a href="#alimentos" data-link="alimentos">Alimentos</a>
+        <a href="#dietas" data-link="dietas">Dietas</a>
+      </nav>
+
+      <!-- Perfil y acciones (visible en todas las secciones) -->
+      <div class="profile right">
+        <label for="perfil">Perfil:</label>
+        <input id="perfil" placeholder="Tu nombre" />
+        <button id="btnCargar">Usar perfil</button>
+        <button id="btnNuevo" class="btn-ghost">Nuevo</button>
+        <button id="btnExpJSON" class="btn-ghost">Exportar JSON</button>
+        <label for="impJSON" class="btn-ghost" style="cursor:pointer;">Importar JSON</label>
+        <input id="impJSON" type="file" accept="application/json" style="display:none" />
+        <span class="help">Autoguardado en tu navegador.</span>
+      </div>
     </div>
   </header>
 
-  <section class="wrap">
-    <!-- CALCULOS -->
-    <div class="card" id="cardCalc">
-      <header><h2>Cálculos</h2></header>
-      <div class="content grid grid-3">
-        <div class="col"><label>Edad</label><input type="number" id="edad" value="22" min="10" /></div>
-        <div class="col"><label>Peso (kg)</label><input type="number" id="peso" step="0.1" value="88.8" /></div>
-        <div class="col"><label>Altura (cm)</label><input type="number" id="altura" value="180" /></div>
-        <div class="col"><label>Pasos/día</label><input type="number" id="pasos" value="2500" /></div>
-        <div class="col"><label>Días de entreno/sem.</label><input type="number" id="diasEnt" value="4" min="0" max="7" /></div>
-        <div class="col"><label>Sexo</label>
-          <select id="sexo">
-            <option value="m">Masculino</option>
-            <option value="f">Femenino</option>
-          </select>
-        </div>
+  <main class="page">
+    <section class="wrap">
 
-        <div style="grid-column:1/-1" class="item">
-          <div class="row">
-            <span class="pill">TMB: <span id="tmb" class="tag mono"></span></span>
-            <span class="pill">FAD: <span id="fad" class="tag mono"></span></span>
-            <span class="pill">TDEE: <span id="tdee" class="tag mono"></span></span>
-          </div>
-          <div class="divider"></div>
-
-          <!-- MANTENIMIENTO -->
-          <div class="calc-row">
-            <div class="calc-box">
-              <div class="title">🧩 Mantenimiento</div>
-              <div class="statline">
-                <span class="key">Kcal</span><span class="mono" id="mant"></span>
-              </div>
-            </div>
-            <div class="calc-box">
-              <div class="title">📌 Resumen rápido</div>
-              <div class="statline">
-                <span class="key">Entrenos/sem</span><span class="mono" id="res_dias"></span>
-                <span class="key">Pasos/día</span><span class="mono" id="res_pasos"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- DEFICITS EN CAJAS SEPARADAS -->
-          <div class="plan-grid">
-            <div class="plan-card">
-              <div class="head">🔥 Déficit moderado <span class="badge">ENT −20%</span> <span class="badge">DES −25%</span></div>
-              <div class="rows">
-                <div class="plan-row">
-                  <span class="badge">ENT</span>
-                  <span class="mono" id="modEnt"></span>
-                </div>
-                <div class="plan-row">
-                  <span class="badge">DES</span>
-                  <span class="mono" id="modDes"></span>
-                </div>
-              </div>
-            </div>
-
-            <div class="plan-card">
-              <div class="head">⚡ Déficit agresivo <span class="badge">ENT −30%</span> <span class="badge">DES −33%</span></div>
-              <div class="rows">
-                <div class="plan-row">
-                  <span class="badge">ENT</span>
-                  <span class="mono" id="agrEnt"></span>
-                </div>
-                <div class="plan-row">
-                  <span class="badge">DES</span>
-                  <span class="mono" id="agrDes"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-
-          <!-- VOLUMEN EN CAJAS SEPARADAS -->
-          <div class="plan-grid">
-            <div class="plan-card">
-              <div class="head">💪 Volumen moderado <span class="badge">ENT +10%</span> <span class="badge">DES +5%</span></div>
-              <div class="rows">
-                <div class="plan-row"><span class="badge">ENT</span><span class="mono" id="volModEnt"></span></div>
-                <div class="plan-row"><span class="badge">DES</span><span class="mono" id="volModDes"></span></div>
-              </div>
-            </div>
-            <div class="plan-card">
-              <div class="head">🚀 Volumen agresivo <span class="badge">ENT +20%</span> <span class="badge">DES +15%</span></div>
-              <div class="rows">
-                <div class="plan-row"><span class="badge">ENT</span><span class="mono" id="volAgrEnt"></span></div>
-                <div class="plan-row"><span class="badge">DES</span><span class="mono" id="volAgrDes"></span></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="divider"></div>
-          <div class="row">
-            <label>Plan a aplicar:</label>
-            <select id="plan">
-              <option value="mant">Mantenimiento</option>
-              <option value="def_mod">Déficit moderado</option>
-              <option value="def_agr">Déficit agresivo</option>
-              <option value="vol_mod">Volumen moderado</option>
-              <option value="vol_agr">Volumen agresivo</option>
+      <!-- =================== CALCULOS =================== -->
+      <div class="card" id="cardCalc" data-route="calculos">
+        <header><h2>Cálculos</h2></header>
+        <div class="content grid grid-3">
+          <div class="col"><label>Edad</label><input type="number" id="edad" value="22" min="10" /></div>
+          <div class="col"><label>Peso (kg)</label><input type="number" id="peso" step="0.1" value="88.8" /></div>
+          <div class="col"><label>Altura (cm)</label><input type="number" id="altura" value="180" /></div>
+          <div class="col"><label>Pasos/día</label><input type="number" id="pasos" value="2500" /></div>
+          <div class="col"><label>Días de entreno/sem.</label><input type="number" id="diasEnt" value="4" min="0" max="7" /></div>
+          <div class="col"><label>Sexo</label>
+            <select id="sexo">
+              <option value="m">Masculino</option>
+              <option value="f">Femenino</option>
             </select>
-            <button id="btnAplicarPlan">Aplicar plan a ENT & DES</button>
-            <span class="small muted">Luego puedes editar kcal/macros manualmente.</span>
           </div>
-        </div>
-      </div>
-    </div>
 
-    <!-- ALIMENTOS -->
-    <div class="card" id="cardFoods">
-      <header><h2>Alimentos</h2></header>
-      <div class="content">
-        <div class="row">
-          <input id="foodName" placeholder="Nombre del alimento" />
-          <input id="foodP" type="number" step="0.1" placeholder="Proteína (g)" />
-          <input id="foodC" type="number" step="0.1" placeholder="Carbohidratos (g)" />
-          <input id="foodF" type="number" step="0.1" placeholder="Grasa (g)" />
-          <input id="foodK" type="number" step="1" placeholder="Kcal (manual)" />
-          <button id="addFood">Añadir</button>
-        </div>
-        <div class="divider"></div>
-        <div class="list" id="foodsList"></div>
-      </div>
-    </div>
-
-    <!-- DIETAS -->
-    <div class="card" id="cardDiet">
-      <header><h2>Dietas</h2></header>
-      <div class="content">
-        <div class="diet-wrap grid-2">
-          <!-- ENTRENO -->
-          <div class="diet-card">
-            <header>
-              <strong>ENTRENO</strong>
-              <span class="subtitle">Objetivo: <span id="goalEnt"></span></span>
-            </header>
-            <div class="row" style="margin-bottom:6px">
-              <input type="number" id="entKcal" placeholder="kcal" />
-              <input type="number" id="entP" placeholder="P (g)" />
-              <input type="number" id="entC" placeholder="C (g)" />
-              <input type="number" id="entF" placeholder="G (g)" />
-              <input type="number" id="entMeals" value="3" min="1" max="10" />
-              <button id="entSetMeals">Definir comidas</button>
+          <div style="grid-column:1/-1" class="item">
+            <div class="row">
+              <span class="pill">TMB: <span id="tmb" class="tag mono"></span></span>
+              <span class="pill">FAD: <span id="fad" class="tag mono"></span></span>
+              <span class="pill">TDEE: <span id="tdee" class="tag mono"></span></span>
             </div>
-            <div id="entMealsWrap" class="meal-list"></div>
-            <div class="totals" id="entTotals"></div>
-          </div>
+            <div class="divider"></div>
 
-          <!-- DESCANSO -->
-          <div class="diet-card">
-            <header>
-              <strong>DESCANSO</strong>
-              <span class="subtitle">Objetivo: <span id="goalDes"></span></span>
-            </header>
-            <div class="row" style="margin-bottom:6px">
-              <input type="number" id="desKcal" placeholder="kcal" />
-              <input type="number" id="desP" placeholder="P (g)" />
-              <input type="number" id="desC" placeholder="C (g)" />
-              <input type="number" id="desF" placeholder="G (g)" />
-              <input type="number" id="desMeals" value="3" min="1" max="10" />
-              <button id="desSetMeals">Definir comidas</button>
+            <!-- MANTENIMIENTO -->
+            <div class="calc-row">
+              <div class="calc-box">
+                <div class="title">🧩 Mantenimiento</div>
+                <div class="statline">
+                  <span class="key" style="color:#93c5fd">Kcal</span><span class="mono" id="mant"></span>
+                </div>
+              </div>
+              <div class="calc-box">
+                <div class="title">📌 Resumen rápido</div>
+                <div class="statline">
+                  <span class="key" style="color:#93c5fd">Entrenos/sem</span><span class="mono" id="res_dias"></span>
+                  <span class="key" style="color:#93c5fd">Pasos/día</span><span class="mono" id="res_pasos"></span>
+                </div>
+              </div>
             </div>
-            <div id="desMealsWrap" class="meal-list"></div>
-            <div class="totals" id="desTotals"></div>
-          </div>
-        </div>
 
-        <div class="sticky-actions">
-            <button id="btnPDF">Exportar PDF de Dietas</button>
-            <button id="btnLista">Lista de la compra</button>
+            <div class="divider"></div>
+
+            <!-- DEFICITS -->
+            <div class="plan-grid">
+              <div class="plan-card">
+                <div class="head">🔥 Déficit moderado <span class="badge">ENT −20%</span> <span class="badge">DES −25%</span></div>
+                <div class="rows">
+                  <div class="plan-row">
+                    <span class="badge">ENT</span>
+                    <span class="mono" id="modEnt"></span>
+                  </div>
+                  <div class="plan-row">
+                    <span class="badge">DES</span>
+                    <span class="mono" id="modDes"></span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="plan-card">
+                <div class="head">⚡ Déficit agresivo <span class="badge">ENT −30%</span> <span class="badge">DES −33%</span></div>
+                <div class="rows">
+                  <div class="plan-row">
+                    <span class="badge">ENT</span>
+                    <span class="mono" id="agrEnt"></span>
+                  </div>
+                  <div class="plan-row">
+                    <span class="badge">DES</span>
+                    <span class="mono" id="agrDes"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- VOLUMEN -->
+            <div class="plan-grid">
+              <div class="plan-card">
+                <div class="head">💪 Volumen moderado <span class="badge">ENT +10%</span> <span class="badge">DES +5%</span></div>
+                <div class="rows">
+                  <div class="plan-row"><span class="badge">ENT</span><span class="mono" id="volModEnt"></span></div>
+                  <div class="plan-row"><span class="badge">DES</span><span class="mono" id="volModDes"></span></div>
+                </div>
+              </div>
+              <div class="plan-card">
+                <div class="head">🚀 Volumen agresivo <span class="badge">ENT +20%</span> <span class="badge">DES +15%</span></div>
+                <div class="rows">
+                  <div class="plan-row"><span class="badge">ENT</span><span class="mono" id="volAgrEnt"></span></div>
+                  <div class="plan-row"><span class="badge">DES</span><span class="mono" id="volAgrDes"></span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="divider"></div>
+            <div class="row">
+              <label>Plan a aplicar:</label>
+              <select id="plan">
+                <option value="mant">Mantenimiento</option>
+                <option value="def_mod">Déficit moderado</option>
+                <option value="def_agr">Déficit agresivo</option>
+                <option value="vol_mod">Volumen moderado</option>
+                <option value="vol_agr">Volumen agresivo</option>
+              </select>
+              <button id="btnAplicarPlan">Aplicar plan a ENT & DES</button>
+              <span class="small muted">Luego puedes editar kcal/macros manualmente.</span>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+
+      <!-- =================== ALIMENTOS =================== -->
+      <div class="card" id="cardFoods" data-route="alimentos">
+        <header><h2>Alimentos</h2></header>
+        <div class="content">
+          <div class="row">
+            <input id="foodName" placeholder="Nombre del alimento" />
+            <input id="foodP" type="number" step="0.1" placeholder="Proteína (g)" />
+            <input id="foodC" type="number" step="0.1" placeholder="Carbohidratos (g)" />
+            <input id="foodF" type="number" step="0.1" placeholder="Grasa (g)" />
+            <input id="foodK" type="number" step="1" placeholder="Kcal (manual)" />
+            <button id="addFood">Añadir</button>
+          </div>
+          <div class="divider"></div>
+          <div class="list" id="foodsList"></div>
+        </div>
+      </div>
+
+      <!-- =================== DIETAS =================== -->
+      <div class="card" id="cardDiet" data-route="dietas">
+        <header><h2>Dietas</h2></header>
+        <div class="content">
+          <div class="diet-wrap grid-2">
+            <!-- ENTRENO -->
+            <div class="diet-card">
+              <header>
+                <strong>ENTRENO</strong>
+                <span class="subtitle">Objetivo: <span id="goalEnt"></span></span>
+              </header>
+              <div class="row" style="margin-bottom:6px">
+                <input type="number" id="entKcal" placeholder="kcal" />
+                <input type="number" id="entP" placeholder="P (g)" />
+                <input type="number" id="entC" placeholder="C (g)" />
+                <input type="number" id="entF" placeholder="G (g)" />
+                <input type="number" id="entMeals" value="3" min="1" max="10" />
+                <button id="entSetMeals">Definir comidas</button>
+              </div>
+              <div id="entMealsWrap" class="meal-list"></div>
+              <div class="totals" id="entTotals"></div>
+            </div>
+
+            <!-- DESCANSO -->
+            <div class="diet-card">
+              <header>
+                <strong>DESCANSO</strong>
+                <span class="subtitle">Objetivo: <span id="goalDes"></span></span>
+              </header>
+              <div class="row" style="margin-bottom:6px">
+                <input type="number" id="desKcal" placeholder="kcal" />
+                <input type="number" id="desP" placeholder="P (g)" />
+                <input type="number" id="desC" placeholder="C (g)" />
+                <input type="number" id="desF" placeholder="G (g)" />
+                <input type="number" id="desMeals" value="3" min="1" max="10" />
+                <button id="desSetMeals">Definir comidas</button>
+              </div>
+              <div id="desMealsWrap" class="meal-list"></div>
+              <div class="totals" id="desTotals"></div>
+            </div>
+          </div>
+
+          <div class="sticky-actions">
+              <button id="btnPDF">Exportar PDF de Dietas</button>
+              <button id="btnLista">Lista de la compra</button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
 <!-- Librerías necesarias para exportar PDF -->
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+
+<script>
+/* =======================
+   SPA Router (hash) — UX suave
+   ======================= */
+const ROUTES = ["calculos","alimentos","dietas"];
+function setActiveNav(route){
+  document.querySelectorAll('.nav a').forEach(a=>{
+    a.classList.toggle('active', a.dataset.link===route);
+    a.setAttribute('aria-current', a.dataset.link===route ? 'page' : 'false');
+  });
+}
+function showRoute(route){
+  if(!ROUTES.includes(route)) route = "calculos";
+  document.querySelectorAll('[data-route]').forEach(s=>{
+    s.classList.toggle('active', s.getAttribute('data-route')===route);
+  });
+  setActiveNav(route);
+  // mejora móvil: sube arriba al cambiar “página”
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+function getRouteFromHash(){
+  const h = (location.hash||"").replace("#","");
+  return ROUTES.includes(h) ? h : "calculos";
+}
+window.addEventListener("hashchange", ()=>showRoute(getRouteFromHash()));
+// Inicializa en primera carga
+document.addEventListener("DOMContentLoaded", ()=>showRoute(getRouteFromHash()));
+</script>
 
 <script>
 /* =======================
@@ -373,7 +456,7 @@ function buildPlanTargets(calc){
   };
   const plans = {};
   for(const key of Object.keys(out)){
-    plans[key] = {entreno:{}, descanso:{}};
+    plans[key] = {entreno:{}, descanso:{}} ;
     ["entreno","descanso"].forEach(d=>{
       const kcal = Math.round(tdee * out[key].ratio[d]);
       const p = Math.round(peso * out[key].pKg[d]);
@@ -446,7 +529,6 @@ function renderCalcsPanel(){
    Foods (kcal manual opcional)
    ======================= */
 function foodKcalPer100(f){
-  // Si tiene kcal manual, usa ese valor; si no, calcula por macros
   return (typeof f.kcal === 'number' && !isNaN(f.kcal)) ? Math.round(f.kcal) : kcalFromMacros(f.p,f.c,f.f);
 }
 function renderFoods() {
@@ -513,7 +595,6 @@ function renderFoods() {
       const tr = wrap.querySelectorAll("tbody tr")[idx];
       const kcal = foodKcalPer100(f);
 
-      // Cambiar celdas a inputs
       tr.innerHTML = `
         <td><input type="text" id="nameEdit_${idx}" value="${f.name}" style="width:160px; padding:6px 8px; border-radius:8px;"></td>
         <td><input type="number" step="0.1" id="pEdit_${idx}" value="${f.p}" style="width:70px; padding:6px 8px; border-radius:8px; text-align:center;"></td>
@@ -525,7 +606,6 @@ function renderFoods() {
           <button class="btn-ghost" id="cancelFood_${idx}">Cancelar</button>
         </td>`;
 
-      // Guardar cambios
       document.getElementById(`saveFood_${idx}`).onclick = () => {
         const newName = $("#nameEdit_" + idx).value.trim();
         const newP = +$("#pEdit_" + idx).value;
@@ -538,7 +618,6 @@ function renderFoods() {
           return;
         }
 
-        // Actualizar el alimento
         state.foods[idx].name = newName;
         state.foods[idx].p = +newP.toFixed(1);
         state.foods[idx].c = +newC.toFixed(1);
@@ -551,7 +630,6 @@ function renderFoods() {
         renderTotals("descanso");
       };
 
-      // Cancelar edición
       document.getElementById(`cancelFood_${idx}`).onclick = () => {
         renderFoods();
       };
@@ -559,8 +637,7 @@ function renderFoods() {
   });
 }
 
-
-// Modifica el botón de añadir alimento para soportar "actualizar"
+// (handler original que soporta editar por dataset.editIndex)
 $("#addFood").onclick = () => {
   const name = $("#foodName").value.trim();
   const p = +$("#foodP").value;
@@ -578,7 +655,6 @@ $("#addFood").onclick = () => {
   const editIndex = $("#addFood").dataset.editIndex;
 
   if (editIndex !== undefined && editIndex !== "") {
-    // Estamos editando
     const i = +editIndex;
     state.foods[i].name = name;
     state.foods[i].p = +p.toFixed(1);
@@ -589,14 +665,12 @@ $("#addFood").onclick = () => {
     delete $("#addFood").dataset.editIndex;
     $("#addFood").textContent = "Añadir";
   } else {
-    // Añadir nuevo
     const id = "f_" + Math.random().toString(36).slice(2, 9);
     const food = { id, name, p: +p.toFixed(1), c: +c.toFixed(1), f: +f.toFixed(1) };
     if (kcal) food.kcal = kcal;
     state.foods.push(food);
   }
 
-  // Limpiar inputs
   $("#foodName").value = $("#foodP").value = $("#foodC").value = $("#foodF").value = $("#foodK").value = "";
   $("#addFood").textContent = "Añadir";
 
@@ -605,7 +679,6 @@ $("#addFood").onclick = () => {
   renderTotals("descanso");
   saveState();
 };
-
 
 /* =======================
    Dietas (UI minimal)
@@ -642,94 +715,82 @@ function renderDiet(kind){
     area.appendChild(box);
 
     const list = $(`#${kind}-meal-${mi}-list`);
-meal.items.forEach((it, ii) => {
-    const row = document.createElement("div");
-    row.className = "meal-item";
-    const selId = `${kind}-${mi}-${ii}-sel`;
-    const qtyId = `${kind}-${mi}-${ii}-qty`;
+    meal.items.forEach((it, ii) => {
+      const row = document.createElement("div");
+      row.className = "meal-item";
+      const selId = `${kind}-${mi}-${ii}-sel`;
+      const qtyId = `${kind}-${mi}-${ii}-qty`;
 
-    const note = foods.find(f => f.id === it.foodId) || { name: "", p: 0, c: 0, f: 0, kcal: 0 };
+      const note = foods.find(f => f.id === it.foodId) || { name: "", p: 0, c: 0, f: 0, kcal: 0 };
 
-    row.innerHTML = `
-      <div style="position:relative;flex:1;">
-        <input type="text" id="${selId}" placeholder="Buscar alimento..." value="${note.name || ""}" 
-          style="width:100%;padding:8px;border-radius:8px;">
-        <div id="${selId}_list" class="autocomplete-list" 
-          style="position:absolute;z-index:5;top:35px;left:0;right:0;background:#0b1220;
-          border:1px solid #244266;border-radius:8px;max-height:180px;overflow:auto;display:none;"></div>
-      </div>
-      <input id="${qtyId}" type="number" step="1" value="${it.g || 100}" style="width:70px;text-align:center;" />
-      <small>g</small>
-      <button class="btn-ghost" id="${kind}-del-${mi}-${ii}">Eliminar</button>
-    `;
+      row.innerHTML = `
+        <div style="position:relative;flex:1;">
+          <input type="text" id="${selId}" placeholder="Buscar alimento..." value="${note.name || ""}" 
+            style="width:100%;padding:8px;border-radius:8px;">
+          <div id="${selId}_list" class="autocomplete-list" 
+            style="position:absolute;z-index:5;top:35px;left:0;right:0;background:#0b1220;
+            border:1px solid #244266;border-radius:8px;max-height:180px;overflow:auto;display:none;"></div>
+        </div>
+        <input id="${qtyId}" type="number" step="1" value="${it.g || 100}" style="width:70px;text-align:center;" />
+        <small>g</small>
+        <button class="btn-ghost" id="${kind}-del-${mi}-${ii}">Eliminar</button>
+      `;
 
-    const input = row.querySelector(`#${selId}`);
-    // === AUTOCOMPLETADO ===
-    const listBox = row.querySelector(`#${selId}_list`);
+      const input = row.querySelector(`#${selId}`);
+      const listBox = row.querySelector(`#${selId}_list`);
+      document.body.appendChild(listBox);
 
-    // Mueve la lista al <body> para que no se recorte dentro de contenedores con overflow
-    document.body.appendChild(listBox);
+      input.addEventListener("input", (e) => {
+        const term = e.target.value.toLowerCase();
+        const matches = foods.filter(f => f.name.toLowerCase().includes(term));
 
-    // 🔎 Mostrar resultados
-    input.addEventListener("input", (e) => {
-      const term = e.target.value.toLowerCase();
-      const matches = foods.filter(f => f.name.toLowerCase().includes(term));
+        listBox.innerHTML = matches.length
+          ? matches.map(f => `<div data-id="${f.id}" style="padding:6px 10px;cursor:pointer;">${f.name}</div>`).join("")
+          : "<div style='padding:6px;color:#999;'>Sin resultados</div>";
 
-      listBox.innerHTML = matches.length
-        ? matches.map(f => `<div data-id="${f.id}" style="padding:6px 10px;cursor:pointer;">${f.name}</div>`).join("")
-        : "<div style='padding:6px;color:#999;'>Sin resultados</div>";
+        const rect = input.getBoundingClientRect();
+        listBox.style.position = "absolute";
+        listBox.style.top = `${rect.bottom + window.scrollY}px`;
+        listBox.style.left = `${rect.left + window.scrollX}px`;
+        listBox.style.width = `${rect.width}px`;
+        listBox.style.display = "block";
+      });
 
-      // posición dinámica justo debajo del input
-      const rect = input.getBoundingClientRect();
-      listBox.style.position = "absolute";
-      listBox.style.top = `${rect.bottom + window.scrollY}px`;
-      listBox.style.left = `${rect.left + window.scrollX}px`;
-      listBox.style.width = `${rect.width}px`;
-      listBox.style.display = "block";
+      listBox.addEventListener("click", (e) => {
+        const opt = e.target.closest("[data-id]");
+        if (!opt) return;
+        const selected = foods.find(f => f.id === opt.dataset.id);
+        if (!selected) return;
+        it.foodId = selected.id;
+        input.value = selected.name;
+        listBox.style.display = "none";
+        renderTotals(kind);
+        saveState();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (!row.contains(e.target)) listBox.style.display = "none";
+      });
+
+      row.querySelector(`#${qtyId}`).addEventListener("input", (e) => {
+        it.g = +e.target.value || 0;
+        renderTotals(kind);
+        saveState();
+      });
+
+      row.querySelector(`#${kind}-del-${mi}-${ii}`).onclick = () => {
+        meal.items.splice(ii, 1);
+        renderDiet(kind);
+        renderTotals(kind);
+        saveState();
+      };
+
+      list.appendChild(row);
+
+      if (ii === meal.items.length - 1) {
+        setTimeout(() => input.focus(), 50);
+      }
     });
-
-
-    // 🖱 Selección
-    listBox.addEventListener("click", (e) => {
-      const opt = e.target.closest("[data-id]");
-      if (!opt) return;
-      const selected = foods.find(f => f.id === opt.dataset.id);
-      if (!selected) return;
-      it.foodId = selected.id;
-      input.value = selected.name;
-      listBox.style.display = "none";
-      renderTotals(kind);
-      saveState();
-    });
-
-    // Ocultar si clic fuera
-    document.addEventListener("click", (e) => {
-      if (!row.contains(e.target)) listBox.style.display = "none";
-    });
-
-    // Cantidad
-    row.querySelector(`#${qtyId}`).addEventListener("input", (e) => {
-      it.g = +e.target.value || 0;
-      renderTotals(kind);
-      saveState();
-    });
-
-    // Eliminar
-    row.querySelector(`#${kind}-del-${mi}-${ii}`).onclick = () => {
-      meal.items.splice(ii, 1);
-      renderDiet(kind);
-      renderTotals(kind);
-      saveState();
-    };
-
-    // Añadir la fila
-    list.appendChild(row);
-
-    // 🎯 Foco automático al crear nuevo alimento
-    if (ii === meal.items.length - 1) {
-      setTimeout(() => input.focus(), 50);
-    }
-  });
 
     document.getElementById(nameId).oninput = (e)=>{ meal.name = e.target.value; saveState(); };
     box.querySelector("[data-add]").onclick = ()=>{
@@ -737,10 +798,8 @@ meal.items.forEach((it, ii) => {
         alert("Primero crea alimentos en el panel de Alimentos."); 
         return; 
       }
-      // Crea item vacío sin preseleccionar ningún alimento
       meal.items.push({foodId: null, g: 100});
       renderDiet(kind);
-      // tras render, enfoca el campo de búsqueda vacío
       setTimeout(() => {
         const inputs = area.querySelectorAll('input[placeholder="Buscar alimento..."]');
         if (inputs.length) inputs[inputs.length - 1].focus();
@@ -769,7 +828,7 @@ function dietTotals(kind){
       if(!f) return;
       const factor = (it.g||0)/100;
       P += f.p*factor; C += f.c*factor; F += f.f*factor;
-      K += foodKcalPer100(f)*factor; // kcal por alimento (manual si existe)
+      K += foodKcalPer100(f)*factor;
     });
   });
   return {P:+P.toFixed(1), C:+C.toFixed(1), F:+F.toFixed(1), K:Math.round(K)};
@@ -862,8 +921,8 @@ $("#btnAplicarPlan").onclick = ()=>{
   saveState();
 };
 
-// Alimentos (añadir con kcal manual opcional)
-$("#addFood").onclick = ()=>{
+// (segundo handler original del código fuente: se mantiene por compatibilidad)
+document.getElementById("addFood").onclick = ()=>{
   const name = $("#foodName").value.trim();
   const p = +$("#foodP").value, c = +$("#foodC").value, f = +$("#foodF").value;
   const kcalManual = $("#foodK").value.trim();
@@ -914,37 +973,22 @@ document.addEventListener("DOMContentLoaded", ()=>{
   const existing = Object.keys(getAllProfiles())[0] || "Alvaro";
   loadProfile(existing);
 });
+
 /* =======================
-   Exportar PDF de dietas (limpio, en columnas + subtotales)
+   Exportar PDF de dietas
    ======================= */
 function exportDietasPDF() {
   const { jsPDF } = window.jspdf;
   const pdf = new jsPDF("p", "mm", "a4");
 
-  const M = 14;          // margen
-  const LH = 7;          // alto de línea
-  const PW = pdf.internal.pageSize.getWidth();
+  const M = 14; const LH = 7; const PW = pdf.internal.pageSize.getWidth();
 
-  // Columnas (usa sólo ASCII para evitar símbolos raros)
-  const COLS = {
-    name: M,
-    qty: 125,
-    kcal: 150,
-    P: 172,
-    C: 188,
-    F: 204
-  };
-
+  const COLS = { name: M, qty: 125, kcal: 150, P: 172, C: 188, F: 204 };
   function fmt(n, d = 0) { return (Number(n) || 0).toFixed(d); }
   function kcal100(f){ return typeof f.kcal === "number" ? f.kcal : Math.round(f.p*4 + f.c*4 + f.f*9); }
   function itemFrom(f, g){
     const factor = (g||0)/100;
-    return {
-      kcal: Math.round(kcal100(f) * factor),
-      P: +(f.p * factor).toFixed(1),
-      C: +(f.c * factor).toFixed(1),
-      F: +(f.f * factor).toFixed(1)
-    };
+    return { kcal: Math.round(kcal100(f) * factor), P: +(f.p * factor).toFixed(1), C: +(f.c * factor).toFixed(1), F: +(f.f * factor).toFixed(1) };
   }
   function hr(y){ pdf.setDrawColor(180); pdf.line(M, y, PW-M, y); }
 
@@ -957,7 +1001,6 @@ function exportDietasPDF() {
     y += 6; pdf.setTextColor(0);
     hr(y); y += 6;
 
-    // Encabezado de tabla
     pdf.setFont("helvetica", "bold"); pdf.setFontSize(11);
     pdf.text("Alimento", COLS.name, y);
     pdf.text("g", COLS.qty, y, {align:"right"});
@@ -988,7 +1031,6 @@ function exportDietasPDF() {
   }
 
   function drawRow(name, g, kcal, P, C, F, y){
-    // corta nombre a una anchura razonable (ASCII, sin elipsis unicode)
     const maxChars = 42;
     const clean = (name||"").toString();
     const label = clean.length>maxChars ? clean.slice(0,maxChars-3)+"..." : clean;
@@ -996,7 +1038,7 @@ function exportDietasPDF() {
     pdf.setFont("helvetica", "normal"); pdf.setFontSize(11);
     pdf.text(label, COLS.name, y);
 
-    pdf.setFont("courier", "normal"); // columnas numéricas monoespaciadas
+    pdf.setFont("courier", "normal");
     pdf.text(fmt(g,0), COLS.qty, y, {align:"right"});
     pdf.text(fmt(kcal,0), COLS.kcal, y, {align:"right"});
     pdf.text(fmt(P,1), COLS.P, y, {align:"right"});
@@ -1026,7 +1068,6 @@ function exportDietasPDF() {
       });
     }
 
-    // Subtotal de la comida
     y = ensureSpace(y);
     pdf.setFont("helvetica", "bold"); pdf.setFontSize(11);
     pdf.text("Subtotal comida:", M, y);
@@ -1055,26 +1096,22 @@ function exportDietasPDF() {
       y = ensureSpace(y, 3);
     });
 
-    // Totales del día
     pdf.setFont("helvetica", "bold"); pdf.setFontSize(12);
     pdf.text("Totales del día", M, y); y += LH;
     pdf.setFont("courier", "bold"); pdf.setFontSize(11);
     pdf.text(`Kcal: ${fmt(grand.kcal,0)}  |  P: ${fmt(grand.P,1)}g  |  C: ${fmt(grand.C,1)}g  |  G: ${fmt(grand.F,1)}g`, M, y);
   }
 
-  // Página 1: ENT | Página 2: DES
   section("entreno", "Día de Entrenamiento");
   pdf.addPage();
   section("descanso", "Día de Descanso");
 
-  // Pie
   pdf.setFont("helvetica","italic"); pdf.setFontSize(9); pdf.setTextColor(120);
   pdf.text("Generado automáticamente — Planificador de Dieta", PW/2, 293, {align:"center"});
   pdf.setTextColor(0);
 
   pdf.save("Dieta_Personalizada.pdf");
 }
-
 document.getElementById("btnPDF").addEventListener("click", exportDietasPDF);
 
 /* =======================
@@ -1086,13 +1123,11 @@ function exportListaCompra() {
   const M = 14, LH = 7, PW = pdf.internal.pageSize.getWidth();
   function fmt(n, d = 0) { return (Number(n) || 0).toFixed(d); }
 
-  // === Pide número de días ===
   let dias = parseInt(prompt("¿Para cuántos días quieres la lista de la compra?", "7"));
   if (isNaN(dias) || dias <= 0) dias = 7;
 
-  // === Reúne todos los alimentos de entreno y descanso ===
   const foods = state.foods;
-  const lista = {}; // { nombre: gramos }
+  const lista = {};
 
   ["entreno", "descanso"].forEach(kind => {
     state.diet[kind].meals.forEach(meal => {
@@ -1106,10 +1141,8 @@ function exportListaCompra() {
     });
   });
 
-  // === Multiplica por número de días ===
   Object.keys(lista).forEach(k => lista[k] *= dias);
 
-  // === Generar PDF ===
   pdf.setFont("helvetica", "bold"); pdf.setFontSize(18);
   pdf.text("Lista de la compra", PW / 2, M, { align: "center" });
   pdf.setFont("helvetica", "normal"); pdf.setFontSize(11);
@@ -1140,10 +1173,7 @@ function exportListaCompra() {
 
   pdf.save(`Lista_Compra_${dias}dias.pdf`);
 }
-
-// Vincular botón
 document.getElementById("btnLista").addEventListener("click", exportListaCompra);
-
 
 /* =======================
    🔘 AUTOCOMPLETAR MACROS (por dieta)
@@ -1175,7 +1205,7 @@ function addAutoButtons() {
   }
 }
 
-// 💅 Estilo visual del botón (azul brillante con glow)
+// Estilo visual del botón (manteniendo tu paleta)
 const style = document.createElement("style");
 style.textContent = `
   .btnAuto {
@@ -1197,7 +1227,7 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ======= Lógica principal =======
+// Lógica principal
 function autoCompleteMacros(kind){
   const totals = dietTotals(kind);
   const goal = currentGoal(kind);
@@ -1211,7 +1241,6 @@ function autoCompleteMacros(kind){
   const foods = state.foods;
   const meals = state.diet[kind].meals;
 
-  // Recoge todos los alimentos usados en la dieta
   let items = [];
   meals.forEach((m,mi)=>{
     m.items.forEach((it,ii)=>{
@@ -1225,17 +1254,14 @@ function autoCompleteMacros(kind){
     return;
   }
 
-  // Calcular kcal por alimento
   items.forEach(o=>{
     o.kcal = foodKcalPer100(o.f) * (o.it.g/100);
   });
 
-  // Desviaciones por macro
   const diffP = goal.p - totals.P;
   const diffC = goal.c - totals.C;
   const diffF = goal.f - totals.F;
 
-  // Clasificar alimentos según su macro dominante
   const proteinFoods = items.filter(o=>o.f.p>o.f.c && o.f.p>o.f.f);
   const carbFoods    = items.filter(o=>o.f.c>o.f.p && o.f.c>o.f.f);
   const fatFoods     = items.filter(o=>o.f.f>o.f.p && o.f.f>o.f.c);
@@ -1247,23 +1273,20 @@ function autoCompleteMacros(kind){
       const currentG = o.it.g;
       const macroPer100 = (o.f.p>o.f.c && o.f.p>o.f.f)? o.f.p :
                           (o.f.c>o.f.p && o.f.c>o.f.f)? o.f.c : o.f.f;
-      const adj = (perItem / macroPer100) * 100; // gramos a añadir o restar
+      const adj = (perItem / macroPer100) * 100;
       o.it.g = Math.max(0, Math.round(currentG + adj));
     });
   }
 
-  // Ajustes lógicos macro a macro
   adjustGroup(proteinFoods, diffP);
   adjustGroup(carbFoods, diffC);
   adjustGroup(fatFoods, diffF);
 
-  // Ajuste fino final según kcal totales
   const newTotals = dietTotals(kind);
   if(newTotals.K > 0){
     const kcalRatio = goal.kcal / newTotals.K;
     items.forEach(o=>{
       o.it.g = Math.max(0, Math.round(o.it.g * kcalRatio));
-
     });
   }
 
@@ -1276,7 +1299,6 @@ function autoCompleteMacros(kind){
 
 // Iniciar los botones al cargar
 document.addEventListener("DOMContentLoaded", addAutoButtons);
-
 </script>
 
 </body>
