@@ -142,6 +142,58 @@
     .topbar{gap:10px}
   }
 
+  /* ===== PERFIL (informes + pautas) ===== */
+
+#informeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+#informeRow input,
+#informeRow textarea {
+  flex: 1 1 150px;
+  min-width: 140px;
+}
+
+#informeRow button {
+  flex: 0 0 auto;
+}
+
+#pautasSection h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.pautas-grid {
+  align-items: flex-start;
+}
+
+.pauta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pauta-form textarea {
+  width: 100%;
+  resize: vertical;
+}
+
+#listaPautas .item textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 60px;
+}
+
+@media (max-width: 900px) {
+  .pautas-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+
   /* Impresión (PDF) */
   @media print{
     body{background:#fff;color:#000}
@@ -154,6 +206,32 @@
   /* SPA: visibilidad por página */
   [data-route]{display:none}
   [data-route].active{display:block}
+
+.peso-cambio {
+  margin-left: 6px;
+  font-size: 0.85em;
+  opacity: 0.7;
+}
+
+.peso-cambio.up {
+  color: #ff7b7b; /* rojo suave */
+}
+
+.peso-cambio.down {
+  color: #7bffb3; /* verde suave */
+}
+
+.peso-cambio.neutral {
+  color: #aaa;
+}
+.pauta-text {
+  white-space: pre-wrap;
+  line-height: 1.4;
+  font-size: 14px;
+  width: 100%;
+  display: block;
+}
+
 </style>
 </head>
 <body>
@@ -167,6 +245,7 @@
         <a href="#calculos" data-link="calculos">Cálculos</a>
         <a href="#alimentos" data-link="alimentos">Alimentos</a>
         <a href="#dietas" data-link="dietas">Dietas</a>
+        <a href="#perfil" data-link="perfil">Perfil</a>
       </nav>
 
       <!-- Perfil y acciones (visible en todas las secciones) -->
@@ -363,7 +442,58 @@
           </div>
         </div>
       </div>
+      <!-- =================== PERFIL =================== -->
+      <div class="card" id="cardPerfil" data-route="perfil">
+        <header><h2>Perfil / Informes de progreso</h2></header>
+        <div class="content">
 
+          <!-- Configurar fecha y peso inicial -->
+          <div class="item" id="inicioConfig">
+            <label>📅 Fecha de inicio:</label>
+            <input type="date" id="fechaInicioDieta">
+            <label style="margin-left:12px;">⚖️ Peso inicial:</label>
+            <input type="number" id="pesoInicialDieta" step="0.1" placeholder="Peso (kg)" style="width:100px;">
+            <button id="guardarInicio">Guardar</button>
+            <span id="fechaInicioGuardada" class="small muted"></span>
+          </div>
+
+
+          <div class="divider"></div>
+
+          <!-- Añadir informe -->
+          <div class="row" id="informeRow">
+            <button id="btnNuevoInforme">➕ Añadir informe</button>
+            <input type="date" id="informeFecha" />
+            <input type="number" id="informePeso" placeholder="Peso (kg)" />
+            <textarea id="informeNotas" rows="1" placeholder="Notas o comentarios"></textarea>
+            <button id="btnGuardarInforme">Guardar informe</button>
+          </div>
+
+          <div class="divider"></div>
+
+          <!-- Lista de informes -->
+          <div id="listaInformes" class="list"></div>
+
+          <div class="divider"></div>
+
+          <!-- ================== PAUTAS ================== -->
+          <div id="pautasSection">
+            <h3>Pautas / Notas</h3>
+            <div class="grid grid-2 pautas-grid">
+              <!-- Lista a la izquierda -->
+              <div class="list" id="listaPautas"></div>
+
+              <!-- Formulario a la derecha -->
+              <div class="pauta-form">
+                <textarea id="pautaTexto" rows="4" placeholder="Escribe aquí una pauta o recordatorio..."></textarea>
+                <button id="btnAddPauta">Añadir pauta</button>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
     </section>
   </main>
 
@@ -375,7 +505,7 @@
 /* =======================
    SPA Router (hash) — UX suave
    ======================= */
-const ROUTES = ["calculos","alimentos","dietas"];
+const ROUTES = ["calculos","alimentos","dietas","perfil"];
 function setActiveNav(route){
   document.querySelectorAll('.nav a').forEach(a=>{
     a.classList.toggle('active', a.dataset.link===route);
@@ -423,9 +553,16 @@ function defaultState(name="default"){
     diet:{
       entreno:{meals:[{name:"Desayuno",items:[]},{name:"Comida",items:[]},{name:"Cena",items:[]}]},
       descanso:{meals:[{name:"Desayuno",items:[]},{name:"Comida",items:[]},{name:"Cena",items:[]}]}
+    },
+    informes:[],
+    pautas:[],
+    perfilInfo: {
+      fechaInicio: "",
+      pesoInicial: ""
     }
   }
 }
+
 
 let state = null;
 function loadProfile(name){
@@ -434,8 +571,14 @@ function loadProfile(name){
   state = all[name];
   $("#perfil").value = name;
   renderAll();
+  renderPerfil();
   saveAllProfiles(all);
+
+  // 🔄 Forzar recálculo y refresco visual sin recargar la página
+  showRoute(getRouteFromHash()); // mantiene la vista actual
+  console.log(`✅ Perfil cargado: ${name}`);
 }
+
 function saveState(){
   const all = getAllProfiles();
   all[state.profile] = state;
@@ -875,9 +1018,11 @@ function renderTotals(kind){
    ======================= */
 $("#btnCargar").onclick = ()=>{
   const name = ($("#perfil").value||"default").trim();
-  if(!name) return;
+  if(!name) return alert("Introduce un nombre de perfil.");
   loadProfile(name);
+  alert(`✅ Perfil "${name}" cargado correctamente.`);
 };
+
 $("#btnNuevo").onclick = ()=>{
   const name = prompt("Nombre del nuevo perfil:");
   if(!name) return;
@@ -1010,7 +1155,29 @@ document.getElementById("btnCargarFoods").onclick = async () => {
 /* =======================
    Inicio
    ======================= */
-   
+
+// Guardar el último perfil usado
+function rememberLastProfile(name){
+  localStorage.setItem("lastProfileUsed", name);
+}
+
+// Recuperarlo al inicio
+document.addEventListener("DOMContentLoaded", ()=>{
+  const last = localStorage.getItem("lastProfileUsed");
+  if(last){
+    loadProfile(last);
+  }else{
+    const all = getAllProfiles();
+    const keys = Object.keys(all);
+    if(keys.length>0) loadProfile(keys[0]);
+  }
+});
+
+window.addEventListener("beforeunload", ()=>{
+  if(state?.profile) rememberLastProfile(state.profile);
+  saveState();
+});
+
 window.addEventListener("beforeunload", saveState);
 document.addEventListener("DOMContentLoaded", ()=> {
   const all = getAllProfiles();
@@ -1345,6 +1512,216 @@ function autoCompleteMacros(kind){
 }
 
 document.addEventListener("DOMContentLoaded", addAutoButtons);
+/* =======================
+   📊 PERFIL / INFORMES + 🗒️ PAUTAS (responsive)
+   ======================= */
+
+function renderPerfil() {
+  // ===== Fecha y peso inicial =====
+  const fInicio = state?.perfilInfo?.fechaInicio || "";
+  const pesoInicialGuardado = state?.perfilInfo?.pesoInicial || "";
+
+  const lbl = document.getElementById("fechaInicioGuardada");
+  const inpFecha = document.getElementById("fechaInicioDieta");
+  const inpPesoInicial = document.getElementById("pesoInicialDieta");
+
+  if (fInicio) inpFecha.value = fInicio;
+
+  // Si el perfil ya tiene un peso inicial, muéstralo
+  if (pesoInicialGuardado) {
+    inpPesoInicial.value = pesoInicialGuardado;
+  } else if ($("#peso").value) {
+    // Solo si no hay nada guardado en el perfil, inicialízalo una vez
+    inpPesoInicial.value = $("#peso").value;
+  }
+
+
+  // Último peso de los informes
+  const ultimoPeso =
+    (state?.informes?.length ?? 0) > 0
+      ? state.informes[state.informes.length - 1].peso
+      : null;
+
+  if (fInicio) {
+    lbl.innerHTML = `
+      📅 Inicio registrado: <strong>${fInicio}</strong>
+      &nbsp;—&nbsp; Peso inicial: <strong>${pesoInicialGuardado || "—"} kg</strong>
+      &nbsp;—&nbsp; Último peso: <strong>${ultimoPeso || "—"} kg</strong>
+    `;
+  } else {
+    lbl.textContent = "Aún no has guardado una fecha de inicio.";
+  }
+
+  // ===== Informes =====
+  const lista = document.getElementById("listaInformes");
+  lista.innerHTML = "";
+  if (!state?.informes || state.informes.length === 0) {
+    lista.innerHTML = `<div class="muted small">No hay informes todavía.</div>`;
+  } else {
+    state.informes.forEach((inf, i) => {
+      const div = document.createElement("div");
+      div.className = "item";
+      div.innerHTML = `
+        <div class="row">
+          <strong>Semana ${inf.semana}</strong>
+          <span class="muted">${inf.fecha}</span>
+          <span class="right">
+            Peso: ${inf.peso} kg
+            ${
+              inf.cambio !== undefined
+                ? `<span class="peso-cambio ${inf.cambio > 0 ? "up" : inf.cambio < 0 ? "down" : "neutral"}">
+                     ${inf.cambio > 0 ? "+" : ""}${inf.cambio} kg
+                   </span>`
+                : ""
+            }
+          </span>
+        </div>
+        <p style="margin-top:6px;white-space:pre-line">${inf.notas || ""}</p>
+        <div class="row" style="margin-top:8px">
+          <button class="btn-ghost" onclick="editarInforme(${i})">Editar</button>
+          <button class="btn-ghost" onclick="eliminarInforme(${i})">Eliminar</button>
+        </div>`;
+      lista.appendChild(div);
+    });
+  }
+
+  // ===== Pautas =====
+  const wrap = document.getElementById("listaPautas");
+  wrap.innerHTML = "";
+  if (!state?.pautas || state.pautas.length === 0) {
+    wrap.innerHTML = `<div class="muted small">Aún no hay pautas registradas.</div>`;
+  } else {
+    state.pautas.forEach((txt, i) => {
+      const item = document.createElement("div");
+      item.className = "item";
+      item.innerHTML = `
+        <div id="pautaView_${i}" class="pauta-text">${txt}</div>
+        <textarea id="pautaEdit_${i}" rows="3" style="display:none;">${txt}</textarea>
+        <div class="row" style="margin-top:6px">
+          <button class="btn-ghost" onclick="editarPauta(${i})">Editar</button>
+          <button class="btn-ghost" onclick="borrarPauta(${i})">Eliminar</button>
+          <button class="btn-ghost" id="btnGuardarPauta_${i}" style="display:none;" onclick="guardarPauta(${i})">Guardar</button>
+          <button class="btn-ghost" id="btnCancelarPauta_${i}" style="display:none;" onclick="cancelarPauta(${i})">Cancelar</button>
+        </div>`;
+      wrap.appendChild(item);
+    });
+  }
+}
+
+
+
+// === Eventos ===
+document.addEventListener("DOMContentLoaded", () => {
+  const btnGuardarInicio = $("#guardarInicio"); // ✅ coincide con tu HTML
+  const btnGuardarInforme = $("#btnGuardarInforme");
+  const btnAddPauta = $("#btnAddPauta");
+
+  btnGuardarInicio.onclick = () => {
+    const fechaVal = $("#fechaInicioDieta").value;
+    const pesoVal = $("#pesoInicialDieta").value;
+    if (!fechaVal) return alert("Selecciona una fecha válida.");
+    if (!pesoVal) return alert("Introduce tu peso inicial.");
+
+    state.perfilInfo = {
+      fechaInicio: fechaVal,
+      pesoInicial: pesoVal
+    };
+    saveState();
+
+
+    alert("✅ Inicio de dieta guardado correctamente.");
+    renderPerfil();
+  };
+
+  btnGuardarInforme.onclick = () => {
+    const fInicio = state?.perfilInfo?.fechaInicio;
+    if (!fInicio) return alert("Primero guarda una fecha de inicio.");
+
+    const fecha = $("#informeFecha").value;
+    const peso = $("#informePeso").value;
+    const notas = $("#informeNotas").value.trim();
+    if (!fecha || !peso) return alert("Rellena fecha y peso.");
+
+    const diff = Math.floor((new Date(fecha) - new Date(fInicio)) / (1000 * 60 * 60 * 24 * 7)) + 1;
+    if (!state.informes) state.informes = [];
+
+    const pesoInicial = parseFloat(state?.perfilInfo?.pesoInicial || 0);
+    const pesoActual = parseFloat(peso);
+    const cambio = +(pesoActual - pesoInicial).toFixed(1);
+
+    if (btnGuardarInforme.dataset.edit) {
+      const i = +btnGuardarInforme.dataset.edit;
+      state.informes[i] = { ...state.informes[i], fecha, peso, notas, cambio };
+      delete btnGuardarInforme.dataset.edit;
+    } else {
+      state.informes.push({ fecha, semana: diff, peso, notas, cambio });
+    }
+
+    $("#informeFecha").value = $("#informePeso").value = $("#informeNotas").value = "";
+    saveState();
+    renderPerfil();
+  };
+
+
+  btnAddPauta.onclick = () => {
+    const val = $("#pautaTexto").value.trim();
+    if (!val) return;
+    if (!state.pautas) state.pautas = [];
+    state.pautas.push(val);
+    $("#pautaTexto").value = "";
+    saveState(); renderPerfil();
+  };
+});
+
+
+function editarInforme(i){
+  const inf = state.informes[i];
+  $("#informeFecha").value = inf.fecha;
+  $("#informePeso").value = inf.peso;
+  $("#informeNotas").value = inf.notas||"";
+  $("#btnGuardarInforme").dataset.edit = i;
+}
+
+function eliminarInforme(i){
+  if(!confirm("¿Eliminar este informe?")) return;
+  state.informes.splice(i,1); saveState(); renderPerfil();
+}
+
+function guardarPauta(i){
+  const val = $("#pautaEdit_"+i).value.trim();
+  if(!val) return;
+  state.pautas[i] = val; saveState(); renderPerfil();
+}
+
+function borrarPauta(i){
+  if(!confirm("¿Eliminar esta pauta?")) return;
+  state.pautas.splice(i,1); saveState(); renderPerfil();
+}
+function editarPauta(i) {
+  const view = $("#pautaView_"+i);
+  const edit = $("#pautaEdit_"+i);
+  const btnG = $("#btnGuardarPauta_"+i);
+  const btnC = $("#btnCancelarPauta_"+i);
+  view.style.display = "none";
+  edit.style.display = "block";
+  btnG.style.display = "inline-block";
+  btnC.style.display = "inline-block";
+}
+
+function cancelarPauta(i) {
+  const view = $("#pautaView_"+i);
+  const edit = $("#pautaEdit_"+i);
+  const btnG = $("#btnGuardarPauta_"+i);
+  const btnC = $("#btnCancelarPauta_"+i);
+  view.style.display = "block";
+  edit.style.display = "none";
+  btnG.style.display = "none";
+  btnC.style.display = "none";
+}
+
+window.addEventListener("hashchange",()=>{ if(getRouteFromHash()==="perfil") renderPerfil(); });
+
+
 </script>
 
 </body>
