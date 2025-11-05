@@ -9,86 +9,57 @@ Todo con una interfaz limpia, intuitiva y totalmente automática. ⚙️
 
 ---
 
-## 🚀 ¿Qué puedes hacer con esta app?
+## 🚀 Cómo empezar
 
-✅ **Crear tu dieta personalizada** según tus datos y objetivos.  
-✅ **Calcular automáticamente tu TDEE, TMB y calorías de mantenimiento.**  
-✅ **Elegir entre 4 tipos de dietas diferentes:**  
-
-| Tipo de dieta | Objetivo | Ajuste calórico | Ideal para... |
-|----------------|-----------|------------------|----------------|
-| 🔥 **Déficit moderado** | Pérdida de grasa controlada | ENT −20% / DES −25% | Perder peso sin pasar hambre. |
-| ⚡ **Déficit agresivo** | Pérdida rápida de grasa | ENT −30% / DES −33% | Fases cortas y definiciones rápidas. |
-| 💪 **Volumen moderado** | Ganancia muscular limpia | ENT +10% / DES +5% | Subir músculo sin acumular grasa. |
-| 🚀 **Volumen agresivo** | Aumento máximo de masa | ENT +20% / DES +15% | Etapas de fuerza o bulk intensivo. |
-
-> 💡 Tanto si eres principiante en el gym como si ya llevas años entrenando, esta app se adapta a ti.  
-> No necesitas ser nutricionista: **solo introduces tus datos y todo se calcula solo.**
+1. **Pulsa “Nuevo” (arriba a la derecha)** para crear tu perfil.  
+2. Introduce tus datos personales (edad, peso, altura, pasos, días de entreno y sexo).  
+3. El sistema calculará tu **TMB**, **FAD** y **TDEE real**.  
+4. Elige tu tipo de plan (**déficit**, **mantenimiento** o **volumen**) y genera tus comidas.  
+5. Todo se guarda automáticamente en tu navegador (JSON local).  
+   🧠 *No se almacena ningún dato personal ni se envía nada a internet.*
 
 ---
 
-## 🧮 Cómo funciona (paso a paso)
+## ⚙️ Funcionalidades principales
 
-1. **Introduce tus datos personales.**  
-   Edad, peso, altura, pasos diarios, días de entreno y sexo.  
-   👉 La app calcula tu **TMB (Tasa Metabólica Basal)**, tu **FAD (Nivel de actividad)** y tu **TDEE (Calorías diarias reales).**
+### 🍽️ Cálculos y dietas personalizadas
+- Calcula automáticamente tu **TMB**, **TDEE** y calorías de mantenimiento.  
+- Aplica planes de **déficit o volumen** según tus objetivos.  
+- Separa automáticamente tus macros entre **entreno y descanso**.  
+- Ajusta todo con un clic mediante el **autocompletado de macros**.
 
-2. **Elige tu tipo de plan:**  
-   Déficit, mantenimiento o volumen — todo con los porcentajes ajustados para entreno y descanso.
+### 🧾 Alimentos y comidas
+- Añade tus propios alimentos con sus macros (por 100g o kcal manuales).  
+- Crea comidas diarias visuales y ajusta cantidades fácilmente.  
+- Todo se actualiza en tiempo real mostrando **kcal, proteínas, carbohidratos y grasas**.
 
-3. **Crea tus alimentos personalizados.**  
-   Añade nombre, proteínas, carbohidratos, grasas y calorías por 100g.  
-   🍗 Pollo, 🥔 arroz, 🥦 brócoli... ¡lo que quieras!
+### ⚖️ Seguimiento y progreso
+- Registra tu **peso inicial** y añade informes semanales con tu evolución.  
+- Calcula automáticamente la **variación de peso** (+/- kg) y muestra el cambio visualmente.  
+- Añade **pautas o notas personalizadas** para cada semana o fase.
 
-4. **Diseña tus comidas del día.**  
-   Divide tus macros en desayunos, comidas, cenas o snacks y ajusta las cantidades fácilmente.
-
-5. **Observa tus totales nutricionales en tiempo real.**  
-   📊 Cada cambio recalcula tus kcal, proteínas, carbohidratos y grasas.
-
-6. **Exporta todo con un clic.**  
-   🧾 Crea tu dieta completa en **PDF profesional** o genera tu **lista de la compra** automática para la semana. 🛒
-
----
-
-## 💥 Funciones que hacen que esta app destaque
-
-✨ **Interfaz moderna y visual:**  
-Diseño oscuro, limpio y organizado, pensado para no perderte.
-
-⚙️ **Autoguardado automático:**  
-Todo se guarda directamente en tu navegador. Sin registros. Sin base de datos.
-
-📤 **Exporta tu dieta en PDF:**  
-Descarga un documento con tus comidas, macros y totales — perfecto para imprimir o guardar.
-
-🛒 **Lista de la compra automática:**  
-La app calcula las cantidades totales de cada alimento según los días que elijas.
-
-🔁 **Importar / Exportar JSON:**  
-Guarda o comparte tus perfiles y dietas fácilmente.
-
-🧠 **Autocompletado de macros:**  
-¿Te faltan 20g de proteína o te pasaste de calorías?  
-La función automática ajusta las cantidades de tus alimentos para cuadrar tus objetivos al 100%.
-
-👤 **Múltiples perfiles:**  
-Crea distintos planes para diferentes personas o etapas (definición, volumen, mantenimiento...).
+### 📤 Exportaciones y guardado
+- **Exporta tu dieta** o **lista de la compra** en PDF profesional.  
+- **Importa o exporta** tus perfiles completos en formato JSON.  
+- **Todo se guarda localmente** en tu navegador, sin servidores ni bases de datos externas.
 
 ---
 
-## 💪 Ideal para...
+## 💪 Ideal para
 
-- Quienes **van al gimnasio** y quieren cuadrar sus comidas de forma inteligente.  
-- Personas que **quieren perder peso o ganar masa muscular** sin pagar planes caros.  
-- Usuarios que **prefieren una herramienta visual, rápida y sin registro.**  
-- Cualquier persona que quiera **entender sus macros y controlar su alimentación.**
+- Personas que entrenan y quieren **controlar sus macros fácilmente**.  
+- Usuarios que buscan una app **offline, rápida y sin registro**.  
+- Quienes quieren **seguir su progreso** sin depender de servicios externos.
 
 ---
 
-## 🖥️ Tecnologías utilizadas
+## 🧠 Tecnologías utilizadas
 
-- **HTML5 + CSS3:** Interfaz responsive y moderna (modo oscuro 🌙).  
-- **JavaScript puro (vanilla):** Cálculos en tiempo real, sin frameworks.  
-- **LocalStorage:** Guarda tus datos directamente en el navegador.  
-- **html2canvas + jsPDF:** Exportación profesional a PDF y listas de compra. 
+- **HTML5 + CSS3** — interfaz moderna y visual (modo oscuro 🌙).  
+- **JavaScript (vanilla)** — cálculos y autoguardado en tiempo real.  
+- **LocalStorage (JSON local)** — sin base de datos ni conexión externa.  
+- **html2canvas + jsPDF** — exportación a PDF y listas automáticas.
+
+---
+
+> ⚡ *Planifica, ajusta y controla tu dieta sin depender de ninguna app externa.*
