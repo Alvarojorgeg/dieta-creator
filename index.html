@@ -874,6 +874,7 @@ function renderDiet(kind){
 
     const list = $(`#${kind}-meal-${mi}-list`);
     meal.items.forEach((it, ii) => {
+      if (!('locked' in it)) it.locked = false;  // ← inicializa locked si no existe
       const row = document.createElement("div");
       row.className = "meal-item";
       const selId = `${kind}-${mi}-${ii}-sel`;
@@ -889,11 +890,18 @@ function renderDiet(kind){
             style="position:absolute;z-index:5;top:35px;left:0;right:0;background:#0b1220;
             border:1px solid #244266;border-radius:8px;max-height:180px;overflow:auto;display:none;"></div>
         </div>
-        <input id="${qtyId}" type="number" step="1" value="${it.g || 100}" style="width:70px;text-align:center;" />
-        <small>g</small>
-        <button class="btn-ghost" id="${kind}-del-${mi}-${ii}">Eliminar</button>
+        <input id="${qtyId}" type="number" step="1" value="${it.g || 100}" style="width:70px;text-align:center;">
+        <div style="display:flex;align-items:center;gap:4px;">
+          <small>g</small>
+          <input type="checkbox" id="${kind}-${mi}-${ii}-lock" ${it.locked ? 'checked' : ''} title="Fijar este alimento">
+        </div>
+        <button class="btn-ghost" id="${kind}-del-${mi}-${ii}" title="Eliminar">🗑️</button>
       `;
-
+      const lockBox = row.querySelector(`#${kind}-${mi}-${ii}-lock`);
+      lockBox.addEventListener('change', () => {
+        it.locked = lockBox.checked;
+        saveState();
+      });
       const input = row.querySelector(`#${selId}`);
       const listBox = row.querySelector(`#${selId}_list`);
       document.body.appendChild(listBox);
@@ -956,7 +964,7 @@ function renderDiet(kind){
         alert("Primero crea alimentos en el panel de Alimentos."); 
         return; 
       }
-      meal.items.push({foodId: null, g: 100});
+      meal.items.push({foodId: null, g: 100, locked: false });
       renderDiet(kind);
       setTimeout(() => {
         const inputs = area.querySelectorAll('input[placeholder="Buscar alimento..."]');
@@ -1442,12 +1450,12 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-function autoCompleteMacros(kind){
+function autoCompleteMacros(kind) {
   const totals = dietTotals(kind);
-  const goal = currentGoal(kind);
+  const goal   = currentGoal(kind);
   const diffKcal = goal.kcal - totals.K;
 
-  if(Math.abs(diffKcal) < 10){
+  if (Math.abs(diffKcal) < 10) {
     alert(`✅ ${kind.toUpperCase()} ya está equilibrada.`);
     return;
   }
@@ -1456,15 +1464,16 @@ function autoCompleteMacros(kind){
   const meals = state.diet[kind].meals;
 
   let items = [];
-  meals.forEach((m,mi)=>{
-    m.items.forEach((it,ii)=>{
-      const f = foods.find(ff=>ff.id===it.foodId);
-      if(f && it.g>0) items.push({mi,ii,it,f});
+  meals.forEach((m, mi) => {
+    m.items.forEach((it, ii) => {
+      if (it.locked) return;               // ← ignora items bloqueados
+      const f = foods.find(ff => ff.id === it.foodId);
+      if (f && it.g > 0) items.push({ mi, ii, it, f });
     });
   });
 
-  if(items.length===0){
-    alert(`No hay alimentos en la dieta de ${kind}.`);
+  if (items.length === 0) {
+    alert(`No hay alimentos desbloqueados en la dieta de ${kind}.`);
     return;
   }
 
