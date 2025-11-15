@@ -890,13 +890,15 @@ function renderDiet(kind){
             style="position:absolute;z-index:5;top:35px;left:0;right:0;background:#0b1220;
             border:1px solid #244266;border-radius:8px;max-height:180px;overflow:auto;display:none;"></div>
         </div>
-        <input id="${qtyId}" type="number" step="1" value="${it.g || 100}" style="width:70px;text-align:center;">
+        <input id="${qtyId}" type="number" step="1" value="${(it.g === 0 ? 0 : (it.g || 100))}" style="width:70px;text-align:center;">
         <div style="display:flex;align-items:center;gap:4px;">
           <small>g</small>
           <input type="checkbox" id="${kind}-${mi}-${ii}-lock" ${it.locked ? 'checked' : ''} title="Fijar este alimento">
         </div>
         <button class="btn-ghost" id="${kind}-del-${mi}-${ii}" title="Eliminar">🗑️</button>
       `;
+      if (it.g === 0) {
+      row.querySelector(`#${qtyId}`).style.color = "red";}
       const lockBox = row.querySelector(`#${kind}-${mi}-${ii}-lock`);
       lockBox.addEventListener('change', () => {
         it.locked = lockBox.checked;
@@ -939,10 +941,15 @@ function renderDiet(kind){
       });
 
       row.querySelector(`#${qtyId}`).addEventListener("input", (e) => {
-        it.g = +e.target.value || 0;
-        renderTotals(kind);
-        saveState();
+          it.g = +e.target.value || 0;
+
+          // 🔥 Pintar en rojo si es cero
+          e.target.style.color = it.g === 0 ? "red" : "white";
+
+          renderTotals(kind);
+          saveState();
       });
+
 
       row.querySelector(`#${kind}-del-${mi}-${ii}`).onclick = () => {
         meal.items.splice(ii, 1);
